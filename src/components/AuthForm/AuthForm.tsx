@@ -1,4 +1,4 @@
-import styles from './signup.module.css';
+import styles from './authform.module.css';
 import cn from 'classnames';
 import Link from 'next/link';
 
@@ -8,7 +8,7 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
       <div className={styles.containerEnter}>
         <div className={styles.modal__block}>
           <form className={styles.modal__form}>
-            <Link href="/music/main">
+            <Link href="/">
               <div className={styles.modal__logo}>
                 <img src="/img/logo_modal.png" alt="logo" />
               </div>
@@ -21,7 +21,7 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
               placeholder="Почта"
             />
             <input
-              className={styles.modal__input}
+              className={cn(styles.modal__input, isSignUp && styles.login)}
               type="password"
               name="password"
               placeholder="Пароль"
@@ -35,11 +35,11 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
               />
             )}
             <div className={styles.errorContainer}></div>
-            <button className={styles.modal__btnSignupEnt}>
+            <button className={styles.modal__btnEnter}>
               {isSignUp ? 'Зарегистрироваться' : 'Войти'}
             </button>
             {!isSignUp && (
-              <Link href={'/auth/sign-up'} className={styles.modal__btnSignup}>
+              <Link href="/auth/sign-up" className={styles.modal__btnSignup}>
                 Зарегистрироваться
               </Link>
             )}
