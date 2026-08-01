@@ -8,11 +8,20 @@ body {
   font-family: var(--font-montserrat), 'Arial';
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
-a, input, select, button {
+a,
+input,
+select,
+button {
   font-family: var(--font-montserrat), 'Arial';
   box-sizing: border-box;
 }
