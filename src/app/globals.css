@@ -6,6 +6,7 @@
 
 body {
   font-family: var(--font-montserrat), 'Arial';
+  background-color: #181818;
 }
 
 h1,

@@ -1,3 +1,4 @@
+import Button from '@/UI/Button/Button';
 import styles from './authform.module.css';
 import cn from 'classnames';
 import Link from 'next/link';
@@ -35,9 +36,7 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
               />
             )}
             <div className={styles.errorContainer}></div>
-            <button className={styles.modal__btnEnter}>
-              {isSignUp ? 'Зарегистрироваться' : 'Войти'}
-            </button>
+            <Button>{isSignUp ? 'Зарегистрироваться' : 'Войти'}</Button>
             {!isSignUp && (
               <Link href="/auth/sign-up" className={styles.modal__btnSignup}>
                 Зарегистрироваться

@@ -1,8 +1,14 @@
+'use client';
+
 import Image from 'next/image';
 import styles from './nav.module.css';
 import Link from 'next/link';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Nav() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className={styles.main__nav}>
       <Link href="/">
@@ -16,30 +22,43 @@ export default function Nav() {
           />
         </div>
       </Link>
-      <div className={styles.nav__burger}>
+      <div
+        onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+        className={styles.nav__burger}
+      >
         <span className={styles.burger__line}></span>
         <span className={styles.burger__line}></span>
         <span className={styles.burger__line}></span>
       </div>
-      <div className={styles.nav__menu}>
-        <ul className={styles.menu__list}>
-          <li className={styles.menu__item}>
-            <Link href="/" className={styles.menu__link}>
-              Главное
-            </Link>
-          </li>
-          <li className={styles.menu__item}>
-            <Link href="/my-playlist" className={styles.menu__link}>
-              Мой плейлист
-            </Link>
-          </li>
-          <li className={styles.menu__item}>
-            <Link href="/auth/sign-in" className={styles.menu__link}>
-              Войти
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+            className={styles.nav__menu}
+          >
+            <ul className={styles.menu__list}>
+              <li className={styles.menu__item}>
+                <Link href="/" className={styles.menu__link}>
+                  Главное
+                </Link>
+              </li>
+              <li className={styles.menu__item}>
+                <Link href="/my-playlist" className={styles.menu__link}>
+                  Мой плейлист
+                </Link>
+              </li>
+              <li className={styles.menu__item}>
+                <Link href="/auth/sign-in" className={styles.menu__link}>
+                  Войти
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

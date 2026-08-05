@@ -28,10 +28,9 @@
   margin-right: 16px;
 }
 
-.sidebar__icon {
-  width: 43px;
-  height: 43px;
-  background-color: #313131;
+.sidebar__icon svg{
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
 }
