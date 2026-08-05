@@ -32,31 +32,29 @@ export default function Nav() {
       </div>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <motion.ul
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
-            className={styles.nav__menu}
+            className={styles.menu__list}
           >
-            <ul className={styles.menu__list}>
-              <li className={styles.menu__item}>
-                <Link href="/" className={styles.menu__link}>
-                  Главное
-                </Link>
-              </li>
-              <li className={styles.menu__item}>
-                <Link href="/my-playlist" className={styles.menu__link}>
-                  Мой плейлист
-                </Link>
-              </li>
-              <li className={styles.menu__item}>
-                <Link href="/auth/sign-in" className={styles.menu__link}>
-                  Войти
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
+            <li className={styles.menu__item}>
+              <Link href="/" className={styles.menu__link}>
+                Главное
+              </Link>
+            </li>
+            <li className={styles.menu__item}>
+              <Link href="/my-playlist" className={styles.menu__link}>
+                Мой плейлист
+              </Link>
+            </li>
+            <li className={styles.menu__item}>
+              <Link href="/auth/sign-in" className={styles.menu__link}>
+                Войти
+              </Link>
+            </li>
+          </motion.ul>
         )}
       </AnimatePresence>
     </nav>

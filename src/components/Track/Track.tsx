@@ -5,7 +5,7 @@ import { formatTime } from '@/utils/helper';
 
 export default function Track({ name, author, album, time }: TrackElType) {
   return (
-    <div className={styles.playlist__item}>
+    <article className={styles.playlist__item}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
           <div className={styles.track__titleImage}>
@@ -34,6 +34,6 @@ export default function Track({ name, author, album, time }: TrackElType) {
           <span className={styles.track__timeText}>{formatTime(time)}</span>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
