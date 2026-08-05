@@ -16,6 +16,16 @@
   position: relative;
 }
 
+.filter__button:hover {
+  border: 1px solid #D9B6FF;
+  color: #D9B6FF;
+}
+
+.filter__button:active {
+  border: 1px solid #9a48f1;
+  color: #9a48f1;
+}
+
 .filter__button_active {
   border: 1px solid #9a48f1;
   color: #9a48f1;
@@ -60,6 +70,7 @@
   text-overflow: ellipsis;
   max-width: 228px;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 }
 
 .filter__list_scroll {

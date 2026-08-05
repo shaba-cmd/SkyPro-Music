@@ -52,16 +52,31 @@ export default function FilterItem({
       >
         <p>{title}</p>
       </div>
-      {arrayFilter.length > 0 && (
-        <span className={styles.filter__button_counter}>
-          {arrayFilter.length}
-        </span>
-      )}
-      {toggleFilter.length > 0 && (
-        <span className={styles.filter__button_counter}>
-          {toggleFilter.length}
-        </span>
-      )}
+
+      <AnimatePresence>
+        {arrayFilter.length > 0 && (
+          <motion.span
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className={styles.filter__button_counter}
+          >
+            {arrayFilter.length}
+          </motion.span>
+        )}
+        {toggleFilter.length > 0 && (
+          <motion.span
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className={styles.filter__button_counter}
+          >
+            {toggleFilter.length}
+          </motion.span>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isActive && (
