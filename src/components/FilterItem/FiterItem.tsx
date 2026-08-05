@@ -14,13 +14,32 @@ export default function FilterItem({
 }: FilterItemProps) {
   const key: keyof TrackType | null =
     activeFilter === 0 ? 'author' : activeFilter === 2 ? 'genre' : null;
-
   const filter = key ? getUniqueValuesByKey(data, key) : [];
 
   const [arrayFilter, setArrayFilter] = useState<string[]>([]);
+  const [toggleFilter, setToggleFilter] = useState<string[]>([]);
+  const byYearFilter: string[] = [
+    'По умолчанию',
+    'Сначала новые',
+    'Сначала старые',
+  ];
 
   const filterClick = (el: string) => {
-    setArrayFilter((a) => [...a, el]);
+    setArrayFilter((prev) => {
+      if (prev.includes(el)) {
+        return prev.filter((item) => item !== el);
+      }
+      return [...prev, el];
+    });
+  };
+
+  const toggleClick = (el: string) => {
+    setToggleFilter((prev) => {
+      if (prev.includes(el)) {
+        return prev.filter((item) => item !== el);
+      }
+      return [el];
+    });
   };
 
   return (
@@ -33,13 +52,16 @@ export default function FilterItem({
       >
         <p>{title}</p>
       </div>
-      <span
-        className={cn({
-          [styles.filter__button_counter]: arrayFilter.length > 0,
-        })}
-      >
-        {arrayFilter.length || null}
-      </span>
+      {arrayFilter.length > 0 && (
+        <span className={styles.filter__button_counter}>
+          {arrayFilter.length}
+        </span>
+      )}
+      {toggleFilter.length > 0 && (
+        <span className={styles.filter__button_counter}>
+          {toggleFilter.length}
+        </span>
+      )}
 
       <AnimatePresence>
         {isActive && (
@@ -57,25 +79,31 @@ export default function FilterItem({
               })}
             >
               <div className={styles.filter__list_item}>
-                {title === 'году выпуска' ? (
-                  <>
-                    <p>По умолчанию</p>
-                    <p>Сначала новые</p>
-                    <p>Сначала старые</p>
-                  </>
-                ) : (
-                  filter.map((el, index) => (
-                    <p
-                      className={cn({
-                        [styles.filter__list_active]: arrayFilter.length > 0,
-                      })}
-                      key={index}
-                      onClick={() => filterClick(el)}
-                    >
-                      {el}
-                    </p>
-                  ))
-                )}
+                {title === 'году выпуска'
+                  ? byYearFilter.map((el, index) => (
+                      <p
+                        className={cn({
+                          [styles.filter__list_active]:
+                            toggleFilter.includes(el),
+                        })}
+                        key={index}
+                        onClick={() => toggleClick(el)}
+                      >
+                        {el}
+                      </p>
+                    ))
+                  : filter.map((el, index) => (
+                      <p
+                        className={cn({
+                          [styles.filter__list_active]:
+                            arrayFilter.includes(el),
+                        })}
+                        key={index}
+                        onClick={() => filterClick(el)}
+                      >
+                        {el}
+                      </p>
+                    ))}
               </div>
             </div>
           </motion.div>
