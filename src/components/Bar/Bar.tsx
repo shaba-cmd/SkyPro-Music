@@ -1,3 +1,5 @@
+'use client';
+
 import cn from 'classnames';
 import styles from './bar.module.css';
 import Link from 'next/link';

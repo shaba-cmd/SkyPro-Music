@@ -11,13 +11,6 @@ export type TrackType = {
   stared_user: string[];
 };
 
-export type TrackElType = {
-  name: string;
-  author: string;
-  time: number;
-  album: string;
-};
-
 export interface FilterItemProps {
   title: string;
   isActive: boolean;

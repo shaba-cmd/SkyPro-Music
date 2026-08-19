@@ -1,11 +1,25 @@
+'use client';
+
 import Link from 'next/link';
 import styles from './track.module.css';
-import { TrackElType } from '@/sharedTypes/sharedTypes';
+import { TrackType } from '@/sharedTypes/sharedTypes';
 import { formatTime } from '@/utils/helper';
+import { useAppDispatch } from '@/store/store';
+import { setCurrentTrack } from '@/store/features/trackSlice';
 
-export default function Track({ name, author, album, time }: TrackElType) {
+type TrackTypeProp = {
+  track: TrackType;
+};
+
+export default function Track({ track }: TrackTypeProp) {
+  const dispatch = useAppDispatch();
+
+  function CurrentTrack() {
+    dispatch(setCurrentTrack(track));
+  }
+
   return (
-    <article className={styles.playlist__item}>
+    <article className={styles.playlist__item} onClick={CurrentTrack}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
           <div className={styles.track__titleImage}>
@@ -14,24 +28,26 @@ export default function Track({ name, author, album, time }: TrackElType) {
             </svg>
           </div>
           <Link className={styles.track__titleLink} href="">
-            {name}
+            {track.name}
           </Link>
         </div>
         <div className={styles.track__author}>
           <Link className={styles.track__authorLink} href="">
-            {author}
+            {track.author}
           </Link>
         </div>
         <div className={styles.track__album}>
           <Link className={styles.track__albumLink} href="">
-            {album}
+            {track.album}
           </Link>
         </div>
         <div className={styles.track__timeSvgBox}>
           <svg className={styles.track__timeSvg}>
             <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </svg>
-          <span className={styles.track__timeText}>{formatTime(time)}</span>
+          <span className={styles.track__timeText}>
+            {formatTime(track.time)}
+          </span>
         </div>
       </div>
     </article>
