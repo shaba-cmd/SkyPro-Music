@@ -1,0 +1,103 @@
+.fiter__box {
+  position: relative;
+}
+
+.filter__button {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+  padding: 6px 20px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+}
+
+.filter__button:hover {
+  border: 1px solid #D9B6FF;
+  color: #D9B6FF;
+}
+
+.filter__button:active {
+  border: 1px solid #9a48f1;
+  color: #9a48f1;
+}
+
+.filter__button_active {
+  border: 1px solid #9a48f1;
+  color: #9a48f1;
+}
+
+.filter__button_counter {
+  width: 25;
+  height: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9a48f1;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 13px;
+}
+
+.filter__list {
+  background-color: #313131;
+  padding: 34px;
+  border-radius: 12px;
+  position: absolute;
+  top: 49px;
+}
+
+.filter__list_item {
+  color: white;
+  display: flex;
+  gap: 28px;
+  font-size: 20px;
+  flex-direction: column;
+  height: max-content;
+  width: max-content;
+}
+
+.filter__list_item p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 228px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.filter__list_scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 237px;
+  max-width: 248px;
+  height: max-content;
+  width: max-content;
+  padding-right: 24px;
+}
+
+.filter__list_scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filter__list_scroll::-webkit-scrollbar-track {
+  background-color: rgba(75, 73, 73, 1);
+  border-radius: 10px;
+}
+
+.filter__list_scroll::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.filter__list_active {
+  color: #9a48f1;
+  text-decoration: underline;
+}

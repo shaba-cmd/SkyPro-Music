@@ -114,30 +114,6 @@
   color: #d0cece;
 }
 
-.modal__btnEnter {
-  width: 278px;
-  height: 52px;
-  background-color: #580ea2;
-  border-radius: 6px;
-  margin-top: 60px;
-  border: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: -0.05px;
-  color: #ffffff;
-  cursor: pointer;
-}
-
 .modal__btnSignup {
   width: 278px;
   height: 52px;
