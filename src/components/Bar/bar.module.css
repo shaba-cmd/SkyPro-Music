@@ -77,7 +77,7 @@
   background: #838383;
 }
 
-.progress__track:hover .progress__time  {
+.progress__track:hover .progress__time {
   display: block;
 }
 

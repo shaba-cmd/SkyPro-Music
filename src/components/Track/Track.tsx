@@ -15,9 +15,15 @@ export default function Track({ track }: TrackTypeProp) {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
+  const isLoading = useAppSelector((state) => state.tracks.isLoading);
 
-  const handleTrackClick = () => {
-    if (currentTrack?._id === track._id) {
+  const isActive = currentTrack?._id === track._id;
+  const isDisabled = isLoading && isActive;
+
+  const handleClick = () => {
+    if (isDisabled) return;
+
+    if (isActive) {
       dispatch(setIsPlay(!isPlay));
       return;
     }
@@ -27,7 +33,7 @@ export default function Track({ track }: TrackTypeProp) {
   };
 
   return (
-    <article className={styles.playlist__item} onClick={handleTrackClick}>
+    <article className={styles.playlist__item} onClick={handleClick}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
           <div className={styles.track__titleImage}>
