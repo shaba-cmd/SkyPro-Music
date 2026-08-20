@@ -1,11 +1,22 @@
+'use client';
+
 import cn from 'classnames';
 import styles from './centerblock.module.css';
 import Search from '../Search/Search';
 import Filter from '../Filter/Filter';
 import { data } from '@/data';
 import Track from '../Track/Track';
+import { useAppDispatch } from '@/store/store';
+import { setPlaylist } from '@/store/features/trackSlice';
+import { useEffect } from 'react';
 
 export default function CenterBlock() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setPlaylist(data));
+  }, [dispatch]);
+
   return (
     <div className={styles.centerblock}>
       <Search />

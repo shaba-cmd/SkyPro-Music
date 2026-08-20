@@ -4,8 +4,8 @@ import Link from 'next/link';
 import styles from './track.module.css';
 import { TrackType } from '@/sharedTypes/sharedTypes';
 import { formatTime } from '@/utils/helper';
-import { useAppDispatch } from '@/store/store';
-import { setCurrentTrack } from '@/store/features/trackSlice';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { setCurrentTrack, setIsPlay } from '@/store/features/trackSlice';
 
 type TrackTypeProp = {
   track: TrackType;
@@ -13,13 +13,21 @@ type TrackTypeProp = {
 
 export default function Track({ track }: TrackTypeProp) {
   const dispatch = useAppDispatch();
+  const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
+  const isPlay = useAppSelector((state) => state.tracks.isPlay);
 
-  function CurrentTrack() {
+  const handleTrackClick = () => {
+    if (currentTrack?._id === track._id) {
+      dispatch(setIsPlay(!isPlay));
+      return;
+    }
+
     dispatch(setCurrentTrack(track));
-  }
+    dispatch(setIsPlay(true));
+  };
 
   return (
-    <article className={styles.playlist__item} onClick={CurrentTrack}>
+    <article className={styles.playlist__item} onClick={handleTrackClick}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
           <div className={styles.track__titleImage}>
