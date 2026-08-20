@@ -56,6 +56,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
+  cursor: pointer;
 }
 
 .track__titleSvg {
@@ -63,6 +64,56 @@
   height: 17px;
   fill: transparent;
   stroke: #4e4e4e;
+}
+
+.track__selectedBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes dancePoint {
+  0% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(2);
+  }
+}
+
+@keyframes bitPoint {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.track__selected {
+  width: 18px;
+  height: 18px;
+  background-color: #b672ff54;
+  border-radius: 50%;
+}
+
+.track__selectedAnim {
+  animation: dancePoint .6s ease-in-out infinite alternate-reverse;
+}
+
+.track__selectedSec {
+  width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.track__selectedSecAnim {
+  animation: bitPoint .3s infinite alternate-reverse;
 }
 
 .track__titleLink {
@@ -116,6 +167,18 @@
   height: 12px;
   fill: transparent;
   stroke: #696969;
+}
+
+.track__timeSvg:hover {
+  fill: transparent;
+  stroke: #acacac;
+  cursor: pointer;
+}
+
+.track__timeSvg:active {
+  fill: #696969;
+  stroke: #ffffff;
+  cursor: pointer;
 }
 
 .track__timeText {

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import styles from './bar.module.css';
+import styles from './volumeControl.module.css';
 import { useEffect, useState } from 'react';
 
 export default function VolumeControl() {

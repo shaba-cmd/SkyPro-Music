@@ -4,8 +4,8 @@ import cn from 'classnames';
 import styles from './bar.module.css';
 import Link from 'next/link';
 import { useAudioPlayer } from '@/hooks/useAudioPlayer';
-import VolumeControl from './VolumeControl';
-import ProgressBar from './ProgressBar';
+import VolumeControl from './VolumeControl/VolumeControl';
+import ProgressBar from './ProgressBar/ProgressBar';
 
 export default function Bar() {
   const {

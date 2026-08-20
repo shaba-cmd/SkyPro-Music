@@ -17,70 +17,6 @@
   flex-direction: column;
 }
 
-.bar__playerProgress {
-  margin-bottom: 1px;
-  max-width: 100%;
-}
-
-.progress__track {
-  position: relative;
-  flex: 1;
-  height: 5px;
-  background: #2e2e2e;
-}
-
-.progress__bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background: #696969;
-}
-
-.progress__timeBox {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 8px;
-  padding: 0 8px;
-}
-
-.progress__time {
-  display: none;
-  font-size: 13px;
-  color: #696969;
-}
-
-.progress__input {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  transform: translateY(-50%);
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.progress__input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 12px;
-  height: 5px;
-}
-
-.progress__track:hover .progress__bar {
-  background: #838383;
-}
-
-.progress__track:hover .progress__time {
-  display: block;
-}
-
 .bar__playerBlock {
   height: 73px;
   display: -webkit-box;
@@ -115,6 +51,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 23px;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -136,46 +73,21 @@
   align-items: center;
 }
 
-.player__btnPrev {
-  margin-right: 23px;
-}
-
-.player__btnPrevSvg {
+.player__btnPrevSvg,
+.player__btnNextSvg {
   width: 15px;
   height: 14px;
-}
-
-.player__btnPlay {
-  margin-right: 23px;
 }
 
 .player__btnPlaySvg {
   width: 22px;
   height: 20px;
-  fill: #d9d9d9;
 }
 
-.player__btnNext {
-  margin-right: 28px;
-  fill: #a53939;
-}
-
-.player__btnNextSvg {
-  width: 15px;
-  height: 14px;
-  fill: inherit;
-  stroke: #d9d9d9;
-}
-
-.player__btnRepeat {
-  margin-right: 24px;
-}
-
-.player__btnRepeatSvg {
+.player__btnRepeatSvg,
+.player__btnShuffleSvg {
   width: 18px;
   height: 12px;
-  fill: transparent;
-  stroke: #696969;
 }
 
 .player__btnShuffle {
@@ -185,13 +97,6 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.player__btnShuffleSvg {
-  width: 19px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
 }
 
 .player__trackPlay {
@@ -284,68 +189,6 @@
   height: 12px;
   fill: transparent;
   stroke: #696969;
-}
-
-.bar__volumeBlock {
-  width: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 92px 0 0;
-}
-
-.volume__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: end;
-}
-
-.volume__image {
-  width: 13px;
-  height: 18px;
-  margin-right: 17px;
-  cursor: pointer;
-}
-
-.volume__svg {
-  width: 13px;
-  height: 18px;
-  fill: transparent;
-}
-
-.volume__progress {
-  width: 109px;
-  display: flex;
-  align-items: center;
-}
-
-.volume__progressLine {
-  width: 100%;
-  height: 2px;
-  appearance: none;
-  cursor: pointer;
-}
-
-.volume__progressLine::-webkit-slider-thumb {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #1a1a1a;
-  border: 2px solid white;
-  border-radius: 50%;
 }
 
 .btn {

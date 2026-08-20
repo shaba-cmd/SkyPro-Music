@@ -6,12 +6,13 @@ import Search from '../Search/Search';
 import Filter from '../Filter/Filter';
 import { data } from '@/data';
 import Track from '../Track/Track';
-import { useAppDispatch } from '@/store/store';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setPlaylist } from '@/store/features/trackSlice';
 import { useEffect } from 'react';
 
 export default function CenterBlock() {
   const dispatch = useAppDispatch();
+  const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
 
   useEffect(() => {
     dispatch(setPlaylist(data));
@@ -41,7 +42,11 @@ export default function CenterBlock() {
         </div>
         <div className={styles.content__playlist}>
           {data.map((el) => (
-            <Track key={el._id} track={el} />
+            <Track
+              key={el._id}
+              track={el}
+              selectedTrack={(currentTrack?._id || null) === el._id}
+            />
           ))}
         </div>
       </div>

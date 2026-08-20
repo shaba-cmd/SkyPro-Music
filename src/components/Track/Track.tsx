@@ -6,24 +6,20 @@ import { TrackType } from '@/sharedTypes/sharedTypes';
 import { formatTime } from '@/utils/helper';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setCurrentTrack, setIsPlay } from '@/store/features/trackSlice';
+import cn from 'classnames';
 
 type TrackTypeProp = {
   track: TrackType;
+  selectedTrack: boolean;
 };
 
-export default function Track({ track }: TrackTypeProp) {
+export default function Track({ track, selectedTrack }: TrackTypeProp) {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
-  const isLoading = useAppSelector((state) => state.tracks.isLoading);
-
-  const isActive = currentTrack?._id === track._id;
-  const isDisabled = isLoading && isActive;
 
   const handleClick = () => {
-    if (isDisabled) return;
-
-    if (isActive) {
+    if (currentTrack?._id === track._id) {
       dispatch(setIsPlay(!isPlay));
       return;
     }
@@ -33,13 +29,27 @@ export default function Track({ track }: TrackTypeProp) {
   };
 
   return (
-    <article className={styles.playlist__item} onClick={handleClick}>
+    <article className={styles.playlist__item}>
       <div className={styles.playlist__track}>
         <div className={styles.track__title}>
-          <div className={styles.track__titleImage}>
+          <div className={styles.track__titleImage} onClick={handleClick}>
             <svg className={styles.track__titleSvg}>
               <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
             </svg>
+            {selectedTrack && (
+              <div className={styles.track__selectedBox}>
+                <span
+                  className={cn(styles.track__selected, {
+                    [styles.track__selectedAnim]: isPlay,
+                  })}
+                ></span>
+                <span
+                  className={cn(styles.track__selectedSec, {
+                    [styles.track__selectedSecAnim]: isPlay,
+                  })}
+                ></span>
+              </div>
+            )}
           </div>
           <Link className={styles.track__titleLink} href="">
             {track.name}

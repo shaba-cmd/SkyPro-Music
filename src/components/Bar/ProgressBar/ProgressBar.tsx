@@ -1,4 +1,4 @@
-import styles from './bar.module.css';
+import styles from './progressBar.module.css';
 import { formatTime } from '@/utils/helper';
 
 interface ProgressBarProps {
