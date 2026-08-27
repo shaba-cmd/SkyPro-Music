@@ -6,17 +6,10 @@ import Search from '../Search/Search';
 import Filter from '../Filter/Filter';
 import { data } from '@/data';
 import Track from '../Track/Track';
-import { useAppDispatch, useAppSelector } from '@/store/store';
-import { setPlaylist } from '@/store/features/trackSlice';
-import { useEffect } from 'react';
+import { useAppSelector } from '@/store/store';
 
 export default function CenterBlock() {
-  const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
-
-  useEffect(() => {
-    dispatch(setPlaylist(data));
-  }, [dispatch]);
 
   return (
     <div className={styles.centerblock}>
@@ -45,6 +38,7 @@ export default function CenterBlock() {
             <Track
               key={el._id}
               track={el}
+              playlist={data}
               selectedTrack={(currentTrack?._id || null) === el._id}
             />
           ))}

@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import styles from './volumeControl.module.css';
 import { useEffect, useState } from 'react';
 
@@ -18,11 +17,10 @@ export default function VolumeControl() {
             <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
           </svg>
         </div>
-        <div className={cn(styles.volume__progress, styles.btn)}>
+        <div className={styles.volume__progress}>
           <input
-            className={cn(styles.volume__progressLine, styles.btn)}
+            className={styles.volume__progressLine}
             type="range"
-            name="range"
             min="0"
             max="1"
             step="0.01"

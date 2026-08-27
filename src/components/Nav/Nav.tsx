@@ -19,6 +19,7 @@ export default function Nav() {
             className={styles.logo__image}
             src="/img/logo.png"
             alt={'logo'}
+            priority
           />
         </div>
       </Link>

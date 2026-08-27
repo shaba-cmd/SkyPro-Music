@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useAudioPlayer } from '@/hooks/useAudioPlayer';
 import VolumeControl from './VolumeControl/VolumeControl';
 import ProgressBar from './ProgressBar/ProgressBar';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { setIsPlay, toggleShuffle } from '@/store/features/trackSlice';
 
 export default function Bar() {
   const {
@@ -14,25 +17,25 @@ export default function Bar() {
     isPlay,
     currentTime,
     duration,
-    setIsDragging,
     nextTrack,
     prevTrack,
-    togglePlay,
     handleProgressChange,
   } = useAudioPlayer();
+  const dispatch = useAppDispatch();
+  const isShuffle = useAppSelector((state) => state.tracks.isShuffle);
+
+  const [loopTrack, setLoopTrack] = useState(false);
 
   if (!currentTrack) return null;
 
   return (
     <div className={styles.bar}>
-      <audio ref={audioRef}></audio>
+      <audio ref={audioRef} loop={loopTrack}></audio>
       <div className={styles.bar__content}>
         <ProgressBar
           currentTime={currentTime}
-          duration={duration || currentTrack?.time || 0}
-          onProgressChange={handleProgressChange}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
+          duration={duration || 0}
+          handleProgressChange={handleProgressChange}
         />
 
         <div className={styles.bar__playerBlock}>
@@ -48,7 +51,7 @@ export default function Bar() {
               </div>
               <div
                 className={cn(styles.player__btnPlay, styles.btn)}
-                onClick={togglePlay}
+                onClick={() => dispatch(setIsPlay(!isPlay))}
               >
                 <svg className={styles.player__btnPlaySvg}>
                   <use
@@ -64,12 +67,22 @@ export default function Bar() {
                   <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                 </svg>
               </div>
-              <div className={cn(styles.player__btnRepeat, styles.btnIcon)}>
+              <div
+                className={cn(styles.player__btnRepeat, styles.btnIcon, {
+                  [styles.btn_active]: loopTrack,
+                })}
+                onClick={() => setLoopTrack(!loopTrack)}
+              >
                 <svg className={styles.player__btnRepeatSvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                 </svg>
               </div>
-              <div className={cn(styles.player__btnShuffle, styles.btnIcon)}>
+              <div
+                className={cn(styles.player__btnShuffle, styles.btnIcon, {
+                  [styles.btn_active]: isShuffle,
+                })}
+                onClick={() => dispatch(toggleShuffle())}
+              >
                 <svg className={styles.player__btnShuffleSvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                 </svg>

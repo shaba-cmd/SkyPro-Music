@@ -5,18 +5,28 @@ import styles from './track.module.css';
 import { TrackType } from '@/sharedTypes/sharedTypes';
 import { formatTime } from '@/utils/helper';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { setCurrentTrack, setIsPlay } from '@/store/features/trackSlice';
+import {
+  setCurrentTrack,
+  setIsPlay,
+  setPlaylist,
+} from '@/store/features/trackSlice';
 import cn from 'classnames';
 
 type TrackTypeProp = {
   track: TrackType;
+  playlist: TrackType[];
   selectedTrack: boolean;
 };
 
-export default function Track({ track, selectedTrack }: TrackTypeProp) {
+export default function Track({
+  track,
+  playlist,
+  selectedTrack,
+}: TrackTypeProp) {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
+  const isLoading = useAppSelector((state) => state.tracks.isLoading);
 
   const handleClick = () => {
     if (currentTrack?._id === track._id) {
@@ -25,6 +35,7 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
     }
 
     dispatch(setCurrentTrack(track));
+    dispatch(setPlaylist(playlist));
     dispatch(setIsPlay(true));
   };
 
@@ -36,7 +47,12 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
             <svg className={styles.track__titleSvg}>
               <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
             </svg>
-            {selectedTrack && (
+            {selectedTrack && isLoading && (
+              <div className={styles.loaderContainer}>
+                <span className={styles.loader}></span>
+              </div>
+            )}
+            {selectedTrack && !isLoading && (
               <div className={styles.track__selectedBox}>
                 <span
                   className={cn(styles.track__selected, {

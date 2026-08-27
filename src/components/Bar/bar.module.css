@@ -213,3 +213,8 @@
   stroke: #ffffff;
   cursor: pointer;
 }
+
+.btn_active {
+  fill: #696969;
+  stroke: #ffffff;
+}

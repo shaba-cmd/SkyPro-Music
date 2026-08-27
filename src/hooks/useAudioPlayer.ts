@@ -1,9 +1,10 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import {
-  setCurrentTrack,
-  setIsPlay,
   setIsLoading,
+  setIsPlay,
+  setNextTrack,
+  setPrevTrack,
 } from '@/store/features/trackSlice';
 
 export const useAudioPlayer = () => {
@@ -12,21 +13,12 @@ export const useAudioPlayer = () => {
 
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
-  const playlist = useAppSelector((state) => state.tracks.playlist);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const currentIndex = playlist.findIndex(
-    (track) => track._id === currentTrack?._id,
-  );
 
   const nextTrack = () => {
-    if (currentIndex < playlist.length - 1) {
-      dispatch(setCurrentTrack(playlist[currentIndex + 1]));
-      dispatch(setIsPlay(true));
-    }
+    dispatch(setNextTrack());
   };
 
   const prevTrack = () => {
@@ -39,23 +31,15 @@ export const useAudioPlayer = () => {
       return;
     }
 
-    if (currentIndex > 0) {
-      dispatch(setCurrentTrack(playlist[currentIndex - 1]));
-      dispatch(setIsPlay(true));
-    }
-  };
-
-  const togglePlay = () => {
-    dispatch(setIsPlay(!isPlay));
+    dispatch(setPrevTrack());
   };
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const newTime = Number(e.target.value);
-    audio.currentTime = newTime;
-    setCurrentTime(newTime);
+    audio.currentTime = Number(e.target.value);
+    setCurrentTime(Number(e.target.value));
   };
 
   useEffect(() => {
@@ -64,71 +48,52 @@ export const useAudioPlayer = () => {
 
     if (audio.src !== currentTrack.track_file) {
       dispatch(setIsLoading(true));
+
       audio.src = currentTrack.track_file;
       audio.load();
       setDuration(currentTrack.time || 0);
       setCurrentTime(0);
 
-      if (isPlay) {
-        audio.play().catch((err) => {
-          if (err.name !== 'AbortError') {
-            dispatch(setIsPlay(false));
-          }
-        });
-      } else {
-        dispatch(setIsLoading(false));
-      }
+      audio.play().catch(() => dispatch(setIsPlay(false)));
+
       return;
     }
 
     if (isPlay) {
-      audio.play().catch((err) => {
-        if (err.name !== 'AbortError') {
-          dispatch(setIsPlay(false));
-        }
-      });
+      audio.play().catch(() => dispatch(setIsPlay(false)));
     } else {
       audio.pause();
     }
-  }, [currentTrack, isPlay, dispatch]);
+  }, [currentTrack, isPlay]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     const update = () => {
-      if (!isDragging) setCurrentTime(audio.currentTime);
-      if (audio.duration) setDuration(audio.duration);
+      setCurrentTime(audio.currentTime);
+      setDuration(audio.duration);
+    };
+
+    const loaded = () => {
+      dispatch(setIsLoading(false));
     };
 
     audio.addEventListener('timeupdate', update);
-    audio.addEventListener('loadedmetadata', update);
-    audio.addEventListener('canplay', update);
-
+    audio.addEventListener('loadedmetadata', loaded);
     return () => {
       audio.removeEventListener('timeupdate', update);
-      audio.removeEventListener('loadedmetadata', update);
-      audio.removeEventListener('canplay', update);
+      audio.removeEventListener('loadedmetadata', loaded);
     };
-  }, [isDragging, duration]);
+  }, [duration]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const onEnd = () => {
-      dispatch(setIsPlay(true));
-      setCurrentTime(0);
-      if (currentIndex < playlist.length - 1) {
-        dispatch(setCurrentTrack(playlist[currentIndex + 1]));
-      } else {
-        dispatch(setIsPlay(false));
-      }
-    };
-
-    audio.addEventListener('ended', onEnd);
-    return () => audio.removeEventListener('ended', onEnd);
-  }, [playlist, currentIndex, dispatch]);
+    audio.addEventListener('ended', nextTrack);
+    return () => audio.removeEventListener('ended', nextTrack);
+  }, [currentTrack]);
 
   return {
     audioRef,
@@ -136,11 +101,8 @@ export const useAudioPlayer = () => {
     isPlay,
     currentTime,
     duration,
-    isDragging,
-    setIsDragging,
     nextTrack,
     prevTrack,
-    togglePlay,
     handleProgressChange,
   };
 };
