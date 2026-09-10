@@ -9,7 +9,7 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
       <div className={styles.containerEnter}>
         <div className={styles.modal__block}>
           <form className={styles.modal__form}>
-            <Link href="/">
+            <Link href="/music/main">
               <div className={styles.modal__logo}>
                 <img src="/img/logo_modal.png" alt="logo" />
               </div>

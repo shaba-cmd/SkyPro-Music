@@ -11,18 +11,14 @@ import {
   setPlaylist,
 } from '@/store/features/trackSlice';
 import cn from 'classnames';
+import { addFavoriteTracks } from '@/services/tracks/tracksApi';
 
 type TrackTypeProp = {
   track: TrackType;
-  playlist: TrackType[];
   selectedTrack: boolean;
 };
 
-export default function Track({
-  track,
-  playlist,
-  selectedTrack,
-}: TrackTypeProp) {
+export default function Track({ track, selectedTrack }: TrackTypeProp) {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
@@ -35,8 +31,13 @@ export default function Track({
     }
 
     dispatch(setCurrentTrack(track));
-    dispatch(setPlaylist(playlist));
     dispatch(setIsPlay(true));
+  };
+
+  const AddTrack = () => {
+    if (currentTrack?._id === track._id) {
+      addFavoriteTracks(track._id).catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -82,7 +83,7 @@ export default function Track({
           </Link>
         </div>
         <div className={styles.track__timeSvgBox}>
-          <svg className={styles.track__timeSvg}>
+          <svg onClick={AddTrack} className={styles.track__timeSvg}>
             <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </svg>
           <span className={styles.track__timeText}>

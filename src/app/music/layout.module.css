@@ -1,3 +1,45 @@
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background-color: rgba(75, 73, 73, 1);
+  border-radius: 10px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.container {
+  max-width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+}
+
+.main {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .centerblock {
   width: auto;
   -webkit-box-flex: 3;
@@ -6,7 +48,7 @@
   padding: 20px 40px 20px 111px;
 }
 
-.centerblock__h2 {
+.main__h2 {
   font-style: normal;
   font-weight: 400;
   font-size: 64px;
@@ -16,7 +58,7 @@
   color: #ffffff;
 }
 
-.centerblock__content {
+.main__content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

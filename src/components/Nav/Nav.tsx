@@ -11,7 +11,7 @@ export default function Nav() {
 
   return (
     <nav className={styles.main__nav}>
-      <Link href="/">
+      <Link href="/music/main">
         <div className={styles.nav__logo}>
           <Image
             width={250}
@@ -41,12 +41,12 @@ export default function Nav() {
             className={styles.menu__list}
           >
             <li className={styles.menu__item}>
-              <Link href="/" className={styles.menu__link}>
+              <Link href="/music/main" className={styles.menu__link}>
                 Главное
               </Link>
             </li>
             <li className={styles.menu__item}>
-              <Link href="/my-playlist" className={styles.menu__link}>
+              <Link href="/music/my-playlist" className={styles.menu__link}>
                 Мой плейлист
               </Link>
             </li>

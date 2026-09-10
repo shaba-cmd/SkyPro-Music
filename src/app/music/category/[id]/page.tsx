@@ -1,22 +1,22 @@
 'use client';
 
 import cn from 'classnames';
-import styles from './centerblock.module.css';
-import Search from '../Search/Search';
-import Filter from '../Filter/Filter';
+import styles from '../../layout.module.css';
+import Filter from '@/components//Filter/Filter';
 import { data } from '@/data';
-import Track from '../Track/Track';
+import Track from '@/components//Track/Track';
 import { useAppSelector } from '@/store/store';
+import { useParams } from 'next/navigation';
 
-export default function CenterBlock() {
+export default function Category() {
+  const params = useParams<{ id: string }>();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
 
   return (
-    <div className={styles.centerblock}>
-      <Search />
-      <h2 className={styles.centerblock__h2}>Треки</h2>
+    <>
+      <h2 className={styles.main__h2}>{params.id}</h2>
       <Filter />
-      <div className={styles.centerblock__content}>
+      <div className={styles.main__content}>
         <div className={styles.content__title}>
           <div className={cn(styles.playlistTitle__col, styles.col01)}>
             Трек
@@ -44,6 +44,6 @@ export default function CenterBlock() {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
