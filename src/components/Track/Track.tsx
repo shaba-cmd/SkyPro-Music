@@ -5,13 +5,9 @@ import styles from './track.module.css';
 import { TrackType } from '@/sharedTypes/sharedTypes';
 import { formatTime } from '@/utils/helper';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import {
-  setCurrentTrack,
-  setIsPlay,
-  setPlaylist,
-} from '@/store/features/trackSlice';
+import { setCurrentTrack, setIsPlay } from '@/store/features/trackSlice';
 import cn from 'classnames';
-import { addFavoriteTracks } from '@/services/tracks/tracksApi';
+// import { addFavoriteTracks } from '@/services/tracks/tracksApi';
 
 type TrackTypeProp = {
   track: TrackType;
@@ -24,6 +20,8 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
   const isLoading = useAppSelector((state) => state.tracks.isLoading);
 
+  console.log(track);
+
   const handleClick = () => {
     if (currentTrack?._id === track._id) {
       dispatch(setIsPlay(!isPlay));
@@ -34,11 +32,11 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
     dispatch(setIsPlay(true));
   };
 
-  const AddTrack = () => {
-    if (currentTrack?._id === track._id) {
-      addFavoriteTracks(track._id).catch((err) => console.log(err));
-    }
-  };
+  // const AddTrack = () => {
+  //   if (currentTrack?._id === track._id) {
+  //     addFavoriteTracks(track._id).catch((err) => console.log(err));
+  //   }
+  // };
 
   return (
     <article className={styles.playlist__item}>
@@ -83,11 +81,11 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
           </Link>
         </div>
         <div className={styles.track__timeSvgBox}>
-          <svg onClick={AddTrack} className={styles.track__timeSvg}>
+          <svg className={styles.track__timeSvg}>
             <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </svg>
           <span className={styles.track__timeText}>
-            {formatTime(track.time)}
+            {formatTime(track.duration_in_seconds)}
           </span>
         </div>
       </div>

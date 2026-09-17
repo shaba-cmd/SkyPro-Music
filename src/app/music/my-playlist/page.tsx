@@ -5,22 +5,22 @@ import styles from '../layout.module.css';
 import Filter from '@/components//Filter/Filter';
 import Track from '@/components//Track/Track';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { useEffect } from 'react';
-import { getFavoriteTracks } from '@/services/tracks/tracksApi';
-import { setPlaylist } from '@/store/features/trackSlice';
+// import { useEffect } from 'react';
+// import { getFavoriteTracks } from '@/services/tracks/tracksApi';
+// import { setPlaylist } from '@/store/features/trackSlice';
 
 export default function MyPlaylist() {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const playlist = useAppSelector((state) => state.tracks.playlist);
 
-  useEffect(() => {
-    getFavoriteTracks()
-      .then((res) => {
-        dispatch(setPlaylist(res));
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   getFavoriteTracks()
+  //     .then((res) => {
+  //       dispatch(setPlaylist(res));
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <>

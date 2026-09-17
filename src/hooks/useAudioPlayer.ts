@@ -51,7 +51,7 @@ export const useAudioPlayer = () => {
 
       audio.src = currentTrack.track_file;
       audio.load();
-      setDuration(currentTrack.time || 0);
+      setDuration(currentTrack.duration_in_seconds || 0);
       setCurrentTime(0);
 
       audio.play().catch(() => dispatch(setIsPlay(false)));

@@ -1,14 +1,14 @@
 export type TrackType = {
-  _id: number;
-  name: string;
-  author: string;
-  release_date: string;
-  genre: string[];
-  time: number;
   album: string;
+  author: string;
+  duration_in_seconds: number;
+  genre: string[];
   logo: null;
+  name: string;
+  release_date: string;
+  staredUser: number[];
   track_file: string;
-  stared_user: string[];
+  _id: number;
 };
 
 export interface FilterItemProps {

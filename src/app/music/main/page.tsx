@@ -5,9 +5,10 @@ import styles from '../layout.module.css';
 import Filter from '@/components//Filter/Filter';
 import Track from '@/components//Track/Track';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { getTracks } from '@/services/tracks/tracksApi';
 import { setPlaylist } from '@/store/features/trackSlice';
+import Loading from '@/app/user/Loading';
 
 export default function Main() {
   const dispatch = useAppDispatch();
@@ -43,15 +44,17 @@ export default function Main() {
             </svg>
           </div>
         </div>
-        <div className={styles.content__playlist}>
-          {playlist.map((el) => (
-            <Track
-              key={el._id}
-              track={el}
-              selectedTrack={(currentTrack?._id || null) === el._id}
-            />
-          ))}
-        </div>
+        <Suspense fallback={<Loading text={'Загрузка треков...'} />}>
+          <div className={styles.content__playlist}>
+            {playlist.map((el) => (
+              <Track
+                key={el._id}
+                track={el}
+                selectedTrack={(currentTrack?._id || null) === el._id}
+              />
+            ))}
+          </div>
+        </Suspense>
       </div>
     </>
   );
