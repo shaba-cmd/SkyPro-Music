@@ -20,8 +20,6 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
   const isLoading = useAppSelector((state) => state.tracks.isLoading);
 
-  console.log(track);
-
   const handleClick = () => {
     if (currentTrack?._id === track._id) {
       dispatch(setIsPlay(!isPlay));
