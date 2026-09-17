@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/store/store';
 import { Suspense, useEffect } from 'react';
 import { getTracks } from '@/services/tracks/tracksApi';
 import { setPlaylist } from '@/store/features/trackSlice';
-import Loading from '@/app/user/Loading';
+import Loading from '../loading';
 
 export default function Main() {
   const dispatch = useAppDispatch();
@@ -44,7 +44,7 @@ export default function Main() {
             </svg>
           </div>
         </div>
-        <Suspense fallback={<Loading text={'Загрузка треков...'} />}>
+        <Suspense fallback={<Loading />}>
           <div className={styles.content__playlist}>
             {playlist.map((el) => (
               <Track
