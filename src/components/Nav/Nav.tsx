@@ -5,8 +5,11 @@ import styles from './nav.module.css';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppDispatch } from '@/store/store';
+import { clearAuth } from '@/store/features/authSlice';
 
 export default function Nav() {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -51,8 +54,12 @@ export default function Nav() {
               </Link>
             </li>
             <li className={styles.menu__item}>
-              <Link href="/auth/sign-in" className={styles.menu__link}>
-                Войти
+              <Link
+                href="/auth/sign-in"
+                className={styles.menu__link}
+                onClick={() => dispatch(clearAuth())}
+              >
+                Выйти
               </Link>
             </li>
           </motion.ul>
