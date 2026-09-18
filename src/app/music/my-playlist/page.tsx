@@ -2,15 +2,14 @@
 
 import cn from 'classnames';
 import styles from '@/components/PageLayout/pagelayout.module.css';
-import Filter from '@/components//Filter/Filter';
-import Track from '@/components//Track/Track';
-import { useAppDispatch, useAppSelector } from '@/store/store';
+import Filter from '@/components/Filter/Filter';
+import Track from '@/components/Track/Track';
+import { useAppSelector } from '@/store/store';
 // import { useEffect } from 'react';
 // import { getFavoriteTracks } from '@/services/tracks/tracksApi';
 // import { setPlaylist } from '@/store/features/trackSlice';
 
 export default function MyPlaylist() {
-  const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const playlist = useAppSelector((state) => state.tracks.playlist);
 
@@ -39,7 +38,7 @@ export default function MyPlaylist() {
           </div>
           <div className={cn(styles.playlistTitle__col, styles.col04)}>
             <svg className={styles.playlistTitle__svg}>
-              <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
+              <use href="#icon-watch"></use>
             </svg>
           </div>
         </div>

@@ -7,6 +7,12 @@ import { useAppDispatch, useAppSelector } from '@/store/store';
 import { clearAuth } from '@/store/features/authSlice';
 import { useRouter } from 'next/navigation';
 
+const PLAYLISTS = [
+  { id: 2, img: '/img/playlist01.png', alt: 'Плейлист дня' },
+  { id: 3, img: '/img/playlist02.png', alt: '100 танцевальных хитов' },
+  { id: 4, img: '/img/playlist03.png', alt: 'Инди-заряд' },
+];
+
 export default function SideBar({ page }: { page: boolean }) {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -28,49 +34,30 @@ export default function SideBar({ page }: { page: boolean }) {
           className={styles.sidebar__icon}
         >
           <svg>
-            <use xlinkHref="/img/icon/sprite.svg#logout"></use>
+            <use href="#logout"></use>
           </svg>
         </div>
       </div>
       {!page && (
         <div className={styles.sidebar__block}>
           <div className={styles.sidebar__list}>
-            <div className={styles.sidebar__item}>
-              <Link className={styles.sidebar__link} href="/music/category/1">
-                <Image
-                  className={styles.sidebar__img}
-                  src="/img/playlist01.png"
-                  alt="day's playlist"
-                  width={250}
-                  height={150}
-                  priority
-                />
-              </Link>
-            </div>
-            <div className={styles.sidebar__item}>
-              <Link className={styles.sidebar__link} href="/music/category/2">
-                <Image
-                  className={styles.sidebar__img}
-                  src="/img/playlist02.png"
-                  alt="day's playlist"
-                  width={250}
-                  height={150}
-                  priority
-                />
-              </Link>
-            </div>
-            <div className={styles.sidebar__item}>
-              <Link className={styles.sidebar__link} href="/music/category/3">
-                <Image
-                  className={styles.sidebar__img}
-                  src="/img/playlist03.png"
-                  alt="day's playlist"
-                  width={250}
-                  height={150}
-                  priority
-                />
-              </Link>
-            </div>
+            {PLAYLISTS.map(({ id, img, alt }) => (
+              <div key={id} className={styles.sidebar__item}>
+                <Link
+                  className={styles.sidebar__link}
+                  href={`/music/category/${id}`}
+                >
+                  <Image
+                    className={styles.sidebar__img}
+                    src={img}
+                    alt={alt}
+                    width={250}
+                    height={150}
+                    priority
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       )}

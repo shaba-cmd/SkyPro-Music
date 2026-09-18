@@ -1,11 +1,15 @@
-module.exports = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   redirects() {
-    return [
+    return Promise.resolve([
       {
         source: '/',
         destination: '/music/main',
-        permanent: true,
+        permanent: false,
       },
-    ];
+    ]);
   },
 };
+
+export default nextConfig;

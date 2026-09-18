@@ -3,6 +3,7 @@
   overflow: hidden;
   background-color: #313131;
   flex-shrink: 0;
+  border-radius: 2px;
 }
 
 .skeleton::after {
@@ -43,7 +44,6 @@
   width: 51px;
   height: 51px;
 }
-
 .trackTitle {
   width: 356px;
   height: 19px;
@@ -60,29 +60,4 @@
   width: 40px;
   height: 19px;
   margin-left: auto;
-}
-
-.sidebarItem {
-  width: 250px;
-  height: 150px;
-  border-radius: 6px;
-}
-
-.playerTrack {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.playerCover {
-  width: 51px;
-  height: 51px;
-}
-.playerName {
-  width: 59px;
-  height: 15px;
-}
-.playerAuthor {
-  width: 59px;
-  height: 15px;
 }

@@ -2,6 +2,7 @@
 
 import { SubmitEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import cn from 'classnames';
 import styles from './authform.module.css';
@@ -111,7 +112,13 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
           <form className={styles.modal__form} onSubmit={onSend}>
             <Link href="/music/main">
               <div className={styles.modal__logo}>
-                <img src="/img/logo_modal.png" alt="logo" />
+                <Image
+                  src="/img/logo_modal.png"
+                  alt="logo"
+                  width={140}
+                  height={21}
+                  priority
+                />
               </div>
             </Link>
 

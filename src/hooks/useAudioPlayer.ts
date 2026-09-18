@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import {
   setIsLoading,
@@ -13,15 +13,15 @@ export const useAudioPlayer = () => {
 
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
+  const volume = useAppSelector((state) => state.tracks.volume);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const nextTrack = () => {
+  const nextTrack = useCallback(() => {
     dispatch(setNextTrack());
-  };
-
-  const prevTrack = () => {
+  }, [dispatch]);
+  const prevTrack = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -32,7 +32,7 @@ export const useAudioPlayer = () => {
     }
 
     dispatch(setPrevTrack());
-  };
+  }, [dispatch]);
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audio = audioRef.current;
@@ -41,6 +41,22 @@ export const useAudioPlayer = () => {
     audio.currentTime = Number(e.target.value);
     setCurrentTime(Number(e.target.value));
   };
+
+  const safePlay = useCallback(
+    (audio: HTMLAudioElement) => {
+      audio.play().catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === 'AbortError')
+          return;
+        dispatch(setIsPlay(false));
+      });
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) audio.volume = volume;
+  }, [volume]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -51,41 +67,40 @@ export const useAudioPlayer = () => {
 
       audio.src = currentTrack.track_file;
       audio.load();
-      setDuration(currentTrack.duration_in_seconds || 0);
       setCurrentTime(0);
 
-      audio.play().catch(() => dispatch(setIsPlay(false)));
-
+      safePlay(audio);
+      dispatch(setIsPlay(true));
       return;
     }
 
     if (isPlay) {
-      audio.play().catch(() => dispatch(setIsPlay(false)));
+      safePlay(audio);
     } else {
       audio.pause();
     }
-  }, [currentTrack, isPlay]);
+  }, [currentTrack, isPlay, safePlay, dispatch]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const update = () => {
-      setCurrentTime(audio.currentTime);
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => {
       setDuration(audio.duration);
-    };
-
-    const loaded = () => {
       dispatch(setIsLoading(false));
     };
 
-    audio.addEventListener('timeupdate', update);
-    audio.addEventListener('loadedmetadata', loaded);
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('loadedmetadata', updateDuration);
+    audio.addEventListener('canplay', updateDuration);
+
     return () => {
-      audio.removeEventListener('timeupdate', update);
-      audio.removeEventListener('loadedmetadata', loaded);
+      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener('loadedmetadata', updateDuration);
+      audio.removeEventListener('canplay', updateDuration);
     };
-  }, [duration]);
+  }, [dispatch]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -93,7 +108,7 @@ export const useAudioPlayer = () => {
 
     audio.addEventListener('ended', nextTrack);
     return () => audio.removeEventListener('ended', nextTrack);
-  }, [currentTrack]);
+  }, [nextTrack]);
 
   return {
     audioRef,

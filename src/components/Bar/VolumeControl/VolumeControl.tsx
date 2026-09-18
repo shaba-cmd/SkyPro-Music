@@ -1,20 +1,17 @@
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import styles from './volumeControl.module.css';
-import { useEffect, useState } from 'react';
+import { setVolume } from '@/store/features/trackSlice';
 
 export default function VolumeControl() {
-  const [volume, setVolume] = useState(0.3);
-
-  useEffect(() => {
-    const audio = document.querySelector('audio');
-    if (audio) audio.volume = volume;
-  }, [volume]);
+  const dispatch = useAppDispatch();
+  const volume = useAppSelector((state) => state.tracks.volume);
 
   return (
     <div className={styles.bar__volumeBlock}>
       <div className={styles.volume__content}>
         <div className={styles.volume__image}>
           <svg className={styles.volume__svg}>
-            <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
+            <use href="#icon-volume"></use>
           </svg>
         </div>
         <div className={styles.volume__progress}>
@@ -25,7 +22,7 @@ export default function VolumeControl() {
             max="1"
             step="0.01"
             value={volume}
-            onChange={(e) => setVolume(Number(e.target.value))}
+            onChange={(e) => dispatch(setVolume(Number(e.target.value)))}
             style={{
               background: `linear-gradient(to right, #ffffff 0%, #ffffff ${volume * 100}%,
                     #797979 ${volume * 100}%, #797979 100%)`,

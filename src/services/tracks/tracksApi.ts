@@ -2,21 +2,23 @@ import { TrackType } from '@/sharedTypes/sharedTypes';
 import { BASE_URL } from '../constants';
 import axios from 'axios';
 
-export const getTracks = (): Promise<TrackType[]> => {
-  return axios
-    .get(BASE_URL + '/catalog/track/all/')
-    .then((res) => res.data.data);
+export type SelectionType = {
+  _id: number;
+  name?: string;
+  items: number[];
 };
 
-// export const getFavoriteTracks = (): Promise<TrackType[]> => {
-//   return axios.get(BASE_URL + '/catalog/track/favorite/all/').then((res) => {
-//     console.log(res);
-//     return res.data.data;
-//   });
-// };
+export const getTracks = async (): Promise<TrackType[]> => {
+  const { data } = await axios.get(`${BASE_URL}/catalog/track/all/`);
+  return data.data;
+};
 
-// export const addFavoriteTracks = (id: number) => {
-//   return axios
-//     .post(`${BASE_URL}/catalog/track/${id}/favorite/`)
-//     .then((res) => res.data.data);
-// };
+export const getSelection = async (id: string): Promise<SelectionType> => {
+  const { data } = await axios.get(`${BASE_URL}/catalog/selection/${id}/`);
+
+  if (!data.data) {
+    throw new Error('Подборка не найдена');
+  }
+
+  return data.data;
+};

@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useState } from 'react';
 import styles from './search.module.css';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setSearchQuery } from '@/store/features/trackSlice';
@@ -12,7 +11,7 @@ export default function Search() {
   return (
     <div className={styles.centerblock__search}>
       <svg className={styles.search__svg}>
-        <use xlinkHref="/img/icon/sprite.svg#icon-search" />
+        <use href="#icon-search" />
       </svg>
       <input
         className={styles.search__text}

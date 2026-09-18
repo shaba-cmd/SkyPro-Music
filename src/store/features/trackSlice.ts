@@ -6,6 +6,7 @@ export type YearSortType = 'По умолчанию' | 'Сначала новы�
 type initialStateType = {
   currentTrack: TrackType | null;
   isPlay: boolean;
+  volume: number;
   isLoading: boolean;
   allTracks: TrackType[];
   playlist: TrackType[];
@@ -22,6 +23,7 @@ type initialStateType = {
 const initialState: initialStateType = {
   currentTrack: null,
   isPlay: false,
+  volume: 0.3,
   isLoading: false,
   allTracks: [],
   playlist: [],
@@ -51,6 +53,9 @@ const trackSlice = createSlice({
     setIsPlay: (state, action: PayloadAction<boolean>) => {
       state.isPlay = action.payload;
     },
+    setVolume(state, action: PayloadAction<number>) {
+      state.volume = action.payload;
+    },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
@@ -59,29 +64,29 @@ const trackSlice = createSlice({
     },
     setNextTrack(state) {
       const playlist = state.isShuffle ? state.shufflePlaylist : state.playlist;
+      if (!playlist.length) return;
 
       const currentIndex = playlist.findIndex(
         (ind) => ind._id === state.currentTrack?._id,
       );
 
-      if (currentIndex < playlist.length - 1) {
-        state.currentTrack = playlist[currentIndex + 1];
-        state.isPlay = true;
-      } else {
-        state.currentTrack = playlist[0];
-      }
+      const nextIndex = (currentIndex + 1) % playlist.length;
+
+      state.currentTrack = playlist[nextIndex];
+      state.isPlay = true;
     },
     setPrevTrack(state) {
       const playlist = state.isShuffle ? state.shufflePlaylist : state.playlist;
+      if (!playlist.length) return;
 
       const currentIndex = playlist.findIndex(
         (ind) => ind._id === state.currentTrack?._id,
       );
 
-      if (currentIndex > 0) {
-        state.currentTrack = playlist[currentIndex - 1];
-        state.isPlay = true;
-      }
+      const prevIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+
+      state.currentTrack = playlist[prevIndex];
+      state.isPlay = true;
     },
     setAllTracks(state, action: PayloadAction<TrackType[]>) {
       state.allTracks = action.payload;
@@ -115,6 +120,7 @@ export const {
   setCurrentTrack,
   setPlaylist,
   setIsPlay,
+  setVolume,
   setIsLoading,
   toggleShuffle,
   setNextTrack,

@@ -1,6 +1,6 @@
 'use client';
 
-import FilterItem from '@/components/FilterItem/FiterItem';
+import FilterItem from '@/components/FilterItem/FilterItem';
 import styles from './filter.module.css';
 import { useState } from 'react';
 
