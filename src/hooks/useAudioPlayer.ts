@@ -100,7 +100,7 @@ export const useAudioPlayer = () => {
       audio.removeEventListener('loadedmetadata', updateDuration);
       audio.removeEventListener('canplay', updateDuration);
     };
-  }, [dispatch]);
+  }, [dispatch, currentTrack]);
 
   useEffect(() => {
     const audio = audioRef.current;
