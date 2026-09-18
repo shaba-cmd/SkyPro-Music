@@ -1,7 +1,7 @@
 'use client';
 
 import cn from 'classnames';
-import styles from '../layout.module.css';
+import styles from '@/components/PageLayout/pagelayout.module.css';
 import Filter from '@/components//Filter/Filter';
 import Track from '@/components//Track/Track';
 import { useAppDispatch, useAppSelector } from '@/store/store';
@@ -48,6 +48,7 @@ export default function MyPlaylist() {
             <Track
               key={el._id}
               track={el}
+              playlist={playlist}
               selectedTrack={(currentTrack?._id || null) === el._id}
             />
           ))}

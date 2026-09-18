@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import PageLayout from './music/layout';
+import PageLayout from '@/components/PageLayout/PageLayout';
 import Image from 'next/image';
 import styles from './not-found.module.css';
 
 export default function NotFound() {
-  const page = true;
-
   return (
-    <PageLayout page={page}>
+    <PageLayout page>
       <div className={styles.notFound}>
         <article className={styles.notFound__box}>
           <h1 className={styles.notFound__error}>404</h1>

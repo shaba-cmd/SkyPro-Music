@@ -1,16 +1,17 @@
 'use client';
 
 import cn from 'classnames';
-import styles from '../../layout.module.css';
+import styles from '@/components/PageLayout/pagelayout.module.css';
 import Filter from '@/components//Filter/Filter';
-import { data } from '@/data';
 import Track from '@/components//Track/Track';
 import { useAppSelector } from '@/store/store';
 import { useParams } from 'next/navigation';
+import { useFilteredTracks } from '@/hooks/useFilteredTracks';
 
 export default function Category() {
   const params = useParams<{ id: string }>();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
+  const visibleTracks = useFilteredTracks();
 
   return (
     <>
@@ -34,12 +35,12 @@ export default function Category() {
           </div>
         </div>
         <div className={styles.content__playlist}>
-          {data.map((el) => (
+          {visibleTracks.map((el) => (
             <Track
               key={el._id}
               track={el}
-              playlist={data}
-              selectedTrack={(currentTrack?._id || null) === el._id}
+              playlist={visibleTracks}
+              selectedTrack={currentTrack?._id === el._id}
             />
           ))}
         </div>

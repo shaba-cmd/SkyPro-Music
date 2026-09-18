@@ -11,7 +11,7 @@ export function getUniqueValuesByKey(
 
     if (Array.isArray(value)) {
       value.forEach((v) => {
-        if (v) uniqueValues.add(v);
+        if (typeof v === 'string' && v) uniqueValues.add(v);
       });
     } else if (typeof value === 'string') {
       uniqueValues.add(value);

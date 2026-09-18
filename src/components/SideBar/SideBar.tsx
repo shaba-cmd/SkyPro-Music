@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 export default function SideBar({ page }: { page: boolean }) {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const user = useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.user?.username);
 
   const handleLogout = () => {
     dispatch(clearAuth());
@@ -20,7 +20,7 @@ export default function SideBar({ page }: { page: boolean }) {
   return (
     <div className={styles.main__sidebar}>
       <div className={styles.sidebar__personal}>
-        <p className={styles.sidebar__personalName}>{user?.username}</p>
+        <p className={styles.sidebar__personalName}>{user}</p>
         <div
           onClick={handleLogout}
           role="button"

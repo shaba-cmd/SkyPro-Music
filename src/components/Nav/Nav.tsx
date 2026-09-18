@@ -56,6 +56,8 @@ export default function Nav() {
             <li className={styles.menu__item}>
               <Link
                 href="/auth/sign-in"
+                replace
+                prefetch={false}
                 className={styles.menu__link}
                 onClick={() => dispatch(clearAuth())}
               >

@@ -5,16 +5,25 @@ import styles from './track.module.css';
 import { TrackType } from '@/sharedTypes/sharedTypes';
 import { formatTime } from '@/utils/helper';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { setCurrentTrack, setIsPlay } from '@/store/features/trackSlice';
+import {
+  setCurrentTrack,
+  setIsPlay,
+  setPlaylist,
+} from '@/store/features/trackSlice';
 import cn from 'classnames';
 // import { addFavoriteTracks } from '@/services/tracks/tracksApi';
 
 type TrackTypeProp = {
   track: TrackType;
+  playlist: TrackType[];
   selectedTrack: boolean;
 };
 
-export default function Track({ track, selectedTrack }: TrackTypeProp) {
+export default function Track({
+  track,
+  playlist,
+  selectedTrack,
+}: TrackTypeProp) {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
@@ -26,6 +35,7 @@ export default function Track({ track, selectedTrack }: TrackTypeProp) {
       return;
     }
 
+    dispatch(setPlaylist(playlist));
     dispatch(setCurrentTrack(track));
     dispatch(setIsPlay(true));
   };

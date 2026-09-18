@@ -10,10 +10,3 @@ export type TrackType = {
   track_file: string;
   _id: number;
 };
-
-export interface FilterItemProps {
-  title: string;
-  isActive: boolean;
-  activeFilter?: number | null;
-  onClick: () => void;
-}

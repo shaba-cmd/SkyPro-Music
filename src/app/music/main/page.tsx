@@ -1,27 +1,27 @@
 'use client';
 
 import cn from 'classnames';
-import styles from '../layout.module.css';
+import styles from '@/components/PageLayout/pagelayout.module.css';
 import Filter from '@/components//Filter/Filter';
 import Track from '@/components//Track/Track';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { Suspense, useEffect } from 'react';
 import { getTracks } from '@/services/tracks/tracksApi';
 import { setPlaylist } from '@/store/features/trackSlice';
+import { setAllTracks } from '@/store/features/trackSlice';
+import { useFilteredTracks } from '@/hooks/useFilteredTracks';
 import Loading from '../loading';
 
 export default function Main() {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
-  const playlist = useAppSelector((state) => state.tracks.playlist);
+  const visibleTracks = useFilteredTracks();
 
   useEffect(() => {
     getTracks()
-      .then((res) => {
-        dispatch(setPlaylist(res));
-      })
+      .then((tracks) => dispatch(setAllTracks(tracks)))
       .catch((err) => console.log(err));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -46,11 +46,12 @@ export default function Main() {
         </div>
         <Suspense fallback={<Loading />}>
           <div className={styles.content__playlist}>
-            {playlist.map((el) => (
+            {visibleTracks.map((el) => (
               <Track
                 key={el._id}
                 track={el}
-                selectedTrack={(currentTrack?._id || null) === el._id}
+                playlist={visibleTracks}
+                selectedTrack={currentTrack?._id === el._id}
               />
             ))}
           </div>

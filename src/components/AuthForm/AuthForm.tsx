@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { SubmitEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import cn from 'classnames';
@@ -8,12 +8,21 @@ import styles from './authform.module.css';
 import Button from '@/UI/Button/Button';
 import { getTokens, loginUser, signUpUser } from '@/services/auth/authApi';
 import { getAuthErrorMessage } from '@/services/auth/authErrors';
-import { useAppDispatch } from '@/store/store';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setAuth } from '@/store/features/authSlice';
 
 export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const access = useAppSelector((state) => state.auth.access);
+  const isHydrated = useAppSelector((state) => state.auth.isHydrated);
+
+  useEffect(() => {
+    if (isHydrated && access) {
+      router.replace('/music/main');
+    }
+  }, [isHydrated, access, router]);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -60,7 +69,7 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
     return '';
   };
 
-  const onSend = async (e: FormEvent<HTMLFormElement>) => {
+  const onSend = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validationError = validateForm();
