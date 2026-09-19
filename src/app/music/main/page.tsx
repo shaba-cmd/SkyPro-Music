@@ -14,7 +14,7 @@ import { useTracksLoader } from '@/hooks/useTracksLoader';
 export default function Main() {
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const visibleTracks = useFilteredTracks();
-  const { isFetching, error } = useTracksLoader(getTracks);
+  const { isFetching, error, refetch } = useTracksLoader(getTracks);
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function Main() {
           {isFetching ? (
             <TrackListSkeleton />
           ) : error ? (
-            <Message text={error} isError />
+            <Message text={error} onRetry={refetch} />
           ) : visibleTracks.length === 0 ? (
             <Message text="Ничего не найдено" />
           ) : (

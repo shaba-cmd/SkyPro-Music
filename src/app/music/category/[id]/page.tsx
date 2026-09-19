@@ -37,6 +37,10 @@ export default function Category() {
 
   const { isFetching, error } = useTracksLoader(loader);
 
+  if (error) {
+    return <Message text={error} />;
+  }
+
   return (
     <>
       <h2 className={styles.main__h2}>{title || 'Загрузка...'}</h2>
@@ -54,15 +58,13 @@ export default function Category() {
           </div>
           <div className={cn(styles.playlistTitle__col, styles.col04)}>
             <svg className={styles.playlistTitle__svg}>
-              <use href="#icon-watch"></use>
+              <use xlinkHref="#icon-watch"></use>
             </svg>
           </div>
         </div>
         <div className={styles.content__playlist}>
           {isFetching ? (
             <TrackListSkeleton />
-          ) : error ? (
-            <Message text={error} isError />
           ) : visibleTracks.length === 0 ? (
             <Message text="В этой подборке пока нет треков" />
           ) : (

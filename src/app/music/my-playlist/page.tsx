@@ -3,15 +3,16 @@
 import cn from 'classnames';
 import styles from '@/components/PageLayout/pagelayout.module.css';
 import Filter from '@/components/Filter/Filter';
-import Track from '@/components/Track/Track';
-import { useAppSelector } from '@/store/store';
+// import { useAppSelector } from '@/store/store';
+// import Track from '@/components/Track/Track';
+// import Message from '@/components/Message/Message';
+// import { TrackListSkeleton } from '@/components/Skeleton/Skeleton';
 // import { useEffect } from 'react';
 // import { getFavoriteTracks } from '@/services/tracks/tracksApi';
 // import { setPlaylist } from '@/store/features/trackSlice';
 
 export default function MyPlaylist() {
-  const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
-  const playlist = useAppSelector((state) => state.tracks.playlist);
+  // const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
 
   // useEffect(() => {
   //   getFavoriteTracks()
@@ -42,16 +43,24 @@ export default function MyPlaylist() {
             </svg>
           </div>
         </div>
-        <div className={styles.content__playlist}>
-          {playlist.map((el) => (
-            <Track
-              key={el._id}
-              track={el}
-              playlist={playlist}
-              selectedTrack={(currentTrack?._id || null) === el._id}
-            />
-          ))}
-        </div>
+        {/* <div className={styles.content__playlist}>
+          {isFetching ? (
+            <TrackListSkeleton />
+          ) : error ? (
+            <Message text={error} isError />
+          ) : visibleTracks.length === 0 ? (
+            <Message text="В моем плейлисте пока нет треков" />
+          ) : (
+            visibleTracks.map((el) => (
+              <Track
+                key={el._id}
+                track={el}
+                playlist={visibleTracks}
+                selectedTrack={currentTrack?._id === el._id}
+              />
+            ))
+          )}
+        </div> */}
       </div>
     </>
   );

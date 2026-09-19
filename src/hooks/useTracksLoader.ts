@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '@/store/store';
 import { setAllTracks } from '@/store/features/trackSlice';
 import { TrackType } from '@/sharedTypes/sharedTypes';
@@ -7,6 +7,7 @@ export const useTracksLoader = (loader: () => Promise<TrackType[]>) => {
   const dispatch = useAppDispatch();
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState('');
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let isActive = true;
@@ -31,7 +32,9 @@ export const useTracksLoader = (loader: () => Promise<TrackType[]>) => {
     return () => {
       isActive = false;
     };
-  }, [loader, dispatch]);
+  }, [loader, dispatch, attempt]);
 
-  return { isFetching, error };
+  const refetch = useCallback(() => setAttempt((n) => n + 1), []);
+
+  return { isFetching, error, refetch };
 };
