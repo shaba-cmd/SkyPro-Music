@@ -101,7 +101,7 @@
 }
 
 .track__selectedAnim {
-  animation: dancePoint .6s ease-in-out infinite alternate-reverse;
+  animation: dancePoint 0.6s ease-in-out infinite alternate-reverse;
 }
 
 .track__selectedSec {
@@ -113,7 +113,7 @@
 }
 
 .track__selectedSecAnim {
-  animation: bitPoint .3s infinite alternate-reverse;
+  animation: bitPoint 0.3s infinite alternate-reverse;
 }
 
 .track__titleLink {
@@ -207,6 +207,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

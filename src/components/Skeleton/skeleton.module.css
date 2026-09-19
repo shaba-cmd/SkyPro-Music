@@ -1,0 +1,63 @@
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #313131;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 255, 255, 0.12) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
+
+.trackRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 0;
+}
+
+.trackCover {
+  width: 51px;
+  height: 51px;
+}
+.trackTitle {
+  width: 356px;
+  height: 19px;
+}
+.trackAuthor {
+  width: 271px;
+  height: 19px;
+}
+.trackAlbum {
+  width: 205px;
+  height: 19px;
+}
+.trackTime {
+  width: 40px;
+  height: 19px;
+  margin-left: auto;
+}

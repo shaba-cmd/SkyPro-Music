@@ -19,10 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ReduxProvider>
-      <html lang="en" className={`${montserrat.variable}`}>
-        <body>{children}</body>
-      </html>
-    </ReduxProvider>
+    <html lang="ru" className={`${montserrat.variable}`}>
+      <body>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
+    </html>
   );
 }
