@@ -1,11 +1,16 @@
+'use client';
+
 import cn from 'classnames';
 import styles from './centerblock.module.css';
 import Search from '../Search/Search';
 import Filter from '../Filter/Filter';
 import { data } from '@/data';
 import Track from '../Track/Track';
+import { useAppSelector } from '@/store/store';
 
 export default function CenterBlock() {
+  const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
+
   return (
     <div className={styles.centerblock}>
       <Search />
@@ -32,10 +37,9 @@ export default function CenterBlock() {
           {data.map((el) => (
             <Track
               key={el._id}
-              name={el.name}
-              author={el.author}
-              album={el.album}
-              time={el.time}
+              track={el}
+              playlist={data}
+              selectedTrack={(currentTrack?._id || null) === el._id}
             />
           ))}
         </div>

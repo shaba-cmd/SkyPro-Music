@@ -1,0 +1,86 @@
+.bar__playerProgress {
+  margin-bottom: 1px;
+  max-width: 100%;
+  position: relative;
+}
+
+.progress__input {
+  --progress-height: 5px;
+  --progress-color: #b672ff;
+  --progress-bg-color: #2e2e2e;
+
+  width: 100%;
+  height: var(--progress-height);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background: transparent;
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+  transform: translateY(-50%);
+  transition: 0.1s;
+}
+
+.progress__input:hover {
+  --progress-height: 8px;
+}
+
+.progress__input::-webkit-slider-runnable-track {
+  position: relative;
+  height: var(--progress-height);
+  background: var(--progress-bg-color);
+}
+
+.progress__input::-webkit-slider-thumb {
+  --thumb-height: 10px;
+  --thumb-width: 10px;
+
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--thumb-width);
+  height: var(--thumb-height);
+  background-color: var(--progress-color);
+  border-radius: 50%;
+  position: relative;
+
+  box-shadow: -100vmax 0 0 100vmax var(--progress-color);
+}
+
+.progress__input::-moz-range-track {
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--progress-bg-color);
+}
+
+.progress__input::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--progress-color);
+  border: none;
+}
+
+.progress__input::-moz-range-progress {
+  background-color: var(--progress-color);
+  height: var(--progress-height);
+}
+
+.progress__timeBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 8px;
+  padding: 0 8px;
+}
+
+.progress__time {
+  display: none;
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+.bar__playerProgress:hover .progress__time {
+  display: block;
+}
