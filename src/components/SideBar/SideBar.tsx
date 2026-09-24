@@ -6,12 +6,35 @@ import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { clearAuth } from '@/store/features/authSlice';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import Skeleton from '@/components/Skeleton/Skeleton';
+import skeletonStyles from '@/components/Skeleton/skeleton.module.css';
 
 const PLAYLISTS = [
   { id: 2, img: '/img/playlist01.png', alt: 'Плейлист дня' },
   { id: 3, img: '/img/playlist02.png', alt: '100 танцевальных хитов' },
   { id: 4, img: '/img/playlist03.png', alt: 'Инди-заряд' },
 ];
+
+function PlaylistImage({ src, alt }: { src: string; alt: string }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className={styles.sidebar__imageWrapper}>
+      {!isLoaded && <Skeleton className={skeletonStyles.sidebarItem} />}
+      <Image
+        className={styles.sidebar__img}
+        src={src}
+        alt={alt}
+        width={250}
+        height={150}
+        onLoad={() => setIsLoaded(true)}
+        style={{ opacity: isLoaded ? 1 : 0 }}
+      />
+    </div>
+  );
+}
 
 export default function SideBar({ page }: { page: boolean }) {
   const dispatch = useAppDispatch();
@@ -47,14 +70,7 @@ export default function SideBar({ page }: { page: boolean }) {
                   className={styles.sidebar__link}
                   href={`/music/category/${id}`}
                 >
-                  <Image
-                    className={styles.sidebar__img}
-                    src={img}
-                    alt={alt}
-                    width={250}
-                    height={150}
-                    priority
-                  />
+                  <PlaylistImage src={img} alt={alt} />
                 </Link>
               </div>
             ))}
