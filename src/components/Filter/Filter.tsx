@@ -1,31 +1,32 @@
 'use client';
 
-import FilterItem from '@/components/FilterItem/FiterItem';
+import FilterItem from '@/components/FilterItem/FilterItem';
 import styles from './filter.module.css';
 import { useState } from 'react';
 
-export default function Filter() {
-  const title: string[] = ['исполнителю', 'году выпуска', 'жанру'];
-  const [activeFilter, setActiveFilter] = useState<number | null>();
+const FILTERS = [
+  { title: 'исполнителю', type: 'author' },
+  { title: 'году выпуска', type: 'year' },
+  { title: 'жанру', type: 'genre' },
+] as const;
 
-  const handleClick = (index: number, el: string) => {
-    setActiveFilter((prev) => (prev === index ? null : index));
-  };
+export default function Filter() {
+  const [openFilter, setOpenFilter] = useState<string | null>(null);
 
   return (
     <div className={styles.centerblock__filter}>
       <div className={styles.filter__title}>Искать по:</div>
-      {title.map((el, index) => {
-        return (
-          <FilterItem
-            key={index}
-            title={el}
-            isActive={activeFilter === index}
-            activeFilter={activeFilter}
-            onClick={() => handleClick(index, el)}
-          />
-        );
-      })}
+      {FILTERS.map(({ title, type }) => (
+        <FilterItem
+          key={type}
+          title={title}
+          type={type}
+          isOpen={openFilter === type}
+          onToggle={() =>
+            setOpenFilter((prev) => (prev === type ? null : type))
+          }
+        />
+      ))}
     </div>
   );
 }

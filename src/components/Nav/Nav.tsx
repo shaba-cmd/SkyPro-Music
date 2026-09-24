@@ -5,13 +5,16 @@ import styles from './nav.module.css';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppDispatch } from '@/store/store';
+import { clearAuth } from '@/store/features/authSlice';
 
 export default function Nav() {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className={styles.main__nav}>
-      <Link href="/">
+      <Link href="/music/main">
         <div className={styles.nav__logo}>
           <Image
             width={250}
@@ -41,18 +44,24 @@ export default function Nav() {
             className={styles.menu__list}
           >
             <li className={styles.menu__item}>
-              <Link href="/" className={styles.menu__link}>
+              <Link href="/music/main" className={styles.menu__link}>
                 Главное
               </Link>
             </li>
             <li className={styles.menu__item}>
-              <Link href="/my-playlist" className={styles.menu__link}>
+              <Link href="/music/my-playlist" className={styles.menu__link}>
                 Мой плейлист
               </Link>
             </li>
             <li className={styles.menu__item}>
-              <Link href="/auth/sign-in" className={styles.menu__link}>
-                Войти
+              <Link
+                href="/auth/sign-in"
+                replace
+                prefetch={false}
+                className={styles.menu__link}
+                onClick={() => dispatch(clearAuth())}
+              >
+                Выйти
               </Link>
             </li>
           </motion.ul>
