@@ -9,7 +9,10 @@ export type SelectionType = {
 };
 
 export const getTracks = async (): Promise<TrackType[]> => {
-  const { data } = await axios.get(`${BASE_URL}/catalog/track/all/`);
+  const { data } = await axios.get(`${BASE_URL}/catalog/track/all/`, {
+    timeout: 15000,
+  });
+
   return data.data;
 };
 

@@ -29,6 +29,7 @@ function PlaylistImage({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         width={250}
         height={150}
+        priority
         onLoad={() => setIsLoaded(true)}
         style={{ opacity: isLoaded ? 1 : 0 }}
       />
