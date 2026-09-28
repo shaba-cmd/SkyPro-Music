@@ -22,3 +22,32 @@ export const getSelection = async (id: string): Promise<SelectionType> => {
 
   return data.data;
 };
+
+const withToken = (access: string) => ({
+  headers: { Authorization: `Bearer ${access}` },
+});
+
+export const getFavoriteTracks = async (
+  access: string,
+): Promise<TrackType[]> => {
+  const { data } = await axios.get(
+    `${BASE_URL}/catalog/track/favorite/all/`,
+    withToken(access),
+  );
+  return data.data;
+};
+
+export const addLike = async (access: string, id: number) => {
+  await axios.post(
+    `${BASE_URL}/catalog/track/${id}/favorite/`,
+    {},
+    withToken(access),
+  );
+};
+
+export const removeLike = async (access: string, id: number) => {
+  await axios.delete(
+    `${BASE_URL}/catalog/track/${id}/favorite/`,
+    withToken(access),
+  );
+};

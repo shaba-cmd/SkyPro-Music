@@ -13,6 +13,7 @@ type initialStateType = {
   shufflePlaylist: TrackType[];
   isShuffle: boolean;
   searchQuery: string;
+  favoriteTracks: TrackType[];
   filters: {
     authors: string[];
     genres: string[];
@@ -30,6 +31,7 @@ const initialState: initialStateType = {
   shufflePlaylist: [],
   isShuffle: false,
   searchQuery: '',
+  favoriteTracks: [],
   filters: {
     authors: [],
     genres: [],
@@ -113,6 +115,20 @@ const trackSlice = createSlice({
       state.filters = initialState.filters;
       state.searchQuery = '';
     },
+    setFavoriteTracks(state, action: PayloadAction<TrackType[]>) {
+      state.favoriteTracks = action.payload;
+    },
+    addLikedTrack(state, action: PayloadAction<TrackType>) {
+      const exists = state.favoriteTracks.some(
+        (track) => track._id === action.payload._id,
+      );
+      if (!exists) state.favoriteTracks.push(action.payload);
+    },
+    removeLikedTrack(state, action: PayloadAction<TrackType>) {
+      state.favoriteTracks = state.favoriteTracks.filter(
+        (track) => track._id !== action.payload._id,
+      );
+    },
   },
 });
 
@@ -131,5 +147,8 @@ export const {
   toggleGenreFilter,
   setYearSort,
   resetFilters,
+  setFavoriteTracks,
+  addLikedTrack,
+  removeLikedTrack,
 } = trackSlice.actions;
 export const trackSliceReducer = trackSlice.reducer;

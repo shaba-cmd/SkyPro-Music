@@ -108,7 +108,7 @@ export const useAudioPlayer = () => {
 
     audio.addEventListener('ended', nextTrack);
     return () => audio.removeEventListener('ended', nextTrack);
-  }, [nextTrack]);
+  }, [nextTrack, currentTrack]);
 
   return {
     audioRef,
