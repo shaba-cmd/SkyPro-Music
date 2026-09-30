@@ -1,6 +1,6 @@
 'use client';
 
-import { SubmitEvent, useEffect, useState } from 'react';
+import { SubmitEvent, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,8 +19,10 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
   const access = useAppSelector((state) => state.auth.access);
   const isHydrated = useAppSelector((state) => state.auth.isHydrated);
 
+  const hasRedirected = useRef(false);
+
   useEffect(() => {
-    if (isHydrated && access) {
+    if (isHydrated && access && !hasRedirected.current) {
       router.replace('/music/main');
     }
   }, [isHydrated, access, router]);
@@ -95,9 +97,6 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
       const tokens = await getTokens(credentials);
 
       dispatch(setAuth({ user, tokens }));
-
-      router.replace('/music/main');
-      router.refresh();
     } catch (requestError: unknown) {
       setError(getAuthErrorMessage(requestError));
     } finally {

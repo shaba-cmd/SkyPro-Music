@@ -10,7 +10,7 @@ import {
   setPlaylist,
 } from '@/store/features/trackSlice';
 import cn from 'classnames';
-// import { addFavoriteTracks } from '@/services/tracks/tracksApi';
+import { useLikeTrack } from '@/hooks/useLikeTrack';
 
 type TrackTypeProp = {
   track: TrackType;
@@ -28,6 +28,8 @@ export default function Track({
   const isPlay = useAppSelector((state) => state.tracks.isPlay);
   const isLoading = useAppSelector((state) => state.tracks.isLoading);
 
+  const { isLike, isLoading: isLikeLoading, toggleLike } = useLikeTrack(track);
+
   const handleClick = () => {
     if (currentTrack?._id === track._id) {
       dispatch(setIsPlay(!isPlay));
@@ -38,12 +40,6 @@ export default function Track({
     dispatch(setCurrentTrack(track));
     dispatch(setIsPlay(true));
   };
-
-  // const AddTrack = () => {
-  //   if (currentTrack?._id === track._id) {
-  //     addFavoriteTracks(track._id).catch((err) => console.log(err));
-  //   }
-  // };
 
   return (
     <article className={styles.playlist__item}>
@@ -82,9 +78,20 @@ export default function Track({
           <span className={styles.track__albumLink}>{track.album}</span>
         </div>
         <div className={styles.track__timeSvgBox}>
-          <svg className={styles.track__timeSvg}>
-            <use href="#icon-like"></use>
-          </svg>
+          <div
+            className={styles.track__likeButton}
+            onClick={toggleLike}
+            role="button"
+            tabIndex={0}
+            aria-label={
+              isLike ? 'Убрать из избранного' : 'Добавить в избранное'
+            }
+            style={{ opacity: isLikeLoading ? 0.5 : 1 }}
+          >
+            <svg className={styles.track__timeSvg}>
+              <use href={isLike ? '#icon-dislike' : '#icon-like'} />
+            </svg>
+          </div>
           <span className={styles.track__timeText}>
             {formatTime(track.duration_in_seconds)}
           </span>

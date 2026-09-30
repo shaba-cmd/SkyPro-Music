@@ -81,3 +81,15 @@
   width: 100%;
   height: auto;
 }
+
+.sidebar__imageWrapper {
+  position: relative;
+  width: 250px;
+  height: 150px;
+}
+
+.sidebar__imageWrapper img {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s;
+}

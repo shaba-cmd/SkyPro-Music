@@ -8,6 +8,7 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setIsPlay, toggleShuffle } from '@/store/features/trackSlice';
+import { useLikeTrack } from '@/hooks/useLikeTrack';
 
 export default function Bar() {
   const {
@@ -22,6 +23,8 @@ export default function Bar() {
   } = useAudioPlayer();
   const dispatch = useAppDispatch();
   const isShuffle = useAppSelector((state) => state.tracks.isShuffle);
+
+  const { isLike, toggleLike, errorMsg } = useLikeTrack(currentTrack);
 
   const [loopTrack, setLoopTrack] = useState(false);
 
@@ -108,16 +111,22 @@ export default function Bar() {
               </div>
 
               <div className={styles.trackPlay__box}>
-                <div className={styles.btnIcon}>
+                <div
+                  className={styles.trackPlay__likeButton}
+                  onClick={toggleLike}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={
+                    isLike ? 'Убрать из избранного' : 'Добавить в избранное'
+                  }
+                >
                   <svg className={styles.trackPlay__likeSvg}>
-                    <use href="#icon-like"></use>
+                    <use href={isLike ? '#icon-dislike' : '#icon-like'}></use>
                   </svg>
                 </div>
-                <div className={styles.btnIcon}>
-                  <svg className={styles.trackPlay__dislikeSvg}>
-                    <use href="#icon-dislike"></use>
-                  </svg>
-                </div>
+                {errorMsg && (
+                  <span className={styles.trackPlay__error}>{errorMsg}</span>
+                )}
               </div>
             </div>
           </div>

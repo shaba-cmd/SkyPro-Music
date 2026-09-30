@@ -214,3 +214,10 @@
     transform: rotate(360deg);
   }
 }
+
+.track__likeButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}

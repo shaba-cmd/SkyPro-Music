@@ -1,26 +1,38 @@
 'use client';
 
+import { useCallback } from 'react';
 import cn from 'classnames';
 import styles from '@/components/PageLayout/pagelayout.module.css';
 import Filter from '@/components/Filter/Filter';
-// import { useAppSelector } from '@/store/store';
-// import Track from '@/components/Track/Track';
-// import Message from '@/components/Message/Message';
-// import { TrackListSkeleton } from '@/components/Skeleton/Skeleton';
-// import { useEffect } from 'react';
-// import { getFavoriteTracks } from '@/services/tracks/tracksApi';
-// import { setPlaylist } from '@/store/features/trackSlice';
+import Track from '@/components/Track/Track';
+import Message from '@/components/Message/Message';
+import { TrackListSkeleton } from '@/components/Skeleton/Skeleton';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { useFilteredTracks } from '@/hooks/useFilteredTracks';
+import { useTracksLoader } from '@/hooks/useTracksLoader';
+import { getFavoriteTracks } from '@/services/tracks/tracksApi';
+import { withReauth } from '@/utils/withReauth';
 
 export default function MyPlaylist() {
-  // const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
+  const dispatch = useAppDispatch();
+  const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
+  const access = useAppSelector((state) => state.auth.access);
+  const refresh = useAppSelector((state) => state.auth.refresh);
 
-  // useEffect(() => {
-  //   getFavoriteTracks()
-  //     .then((res) => {
-  //       dispatch(setPlaylist(res));
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const visibleTracks = useFilteredTracks();
+
+  const loader = useCallback(async () => {
+    if (!access) return [];
+
+    return withReauth(
+      (token) => getFavoriteTracks(token),
+      access,
+      refresh,
+      dispatch,
+    );
+  }, [access, refresh, dispatch]);
+
+  const { isFetching, error, refetch } = useTracksLoader(loader);
 
   return (
     <>
@@ -43,13 +55,13 @@ export default function MyPlaylist() {
             </svg>
           </div>
         </div>
-        {/* <div className={styles.content__playlist}>
+        <div className={styles.content__playlist}>
           {isFetching ? (
             <TrackListSkeleton />
           ) : error ? (
-            <Message text={error} isError />
+            <Message text={error} onRetry={refetch} />
           ) : visibleTracks.length === 0 ? (
-            <Message text="В моем плейлисте пока нет треков" />
+            <Message text="В вашем плейлисте пока нет треков" />
           ) : (
             visibleTracks.map((el) => (
               <Track
@@ -60,7 +72,7 @@ export default function MyPlaylist() {
               />
             ))
           )}
-        </div> */}
+        </div>
       </div>
     </>
   );
