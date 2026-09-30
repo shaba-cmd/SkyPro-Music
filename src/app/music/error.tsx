@@ -2,7 +2,7 @@
 
 import { useEffect, useTransition } from 'react';
 import Message from '@/components/Message/Message';
-import { TrackListSkeleton } from '@/components/Skeleton/Skeleton';
+import { PageSkeleton } from '@/components/Skeleton/Skeleton';
 
 export default function Error({
   error,
@@ -24,7 +24,7 @@ export default function Error({
   };
 
   if (isPending) {
-    return <TrackListSkeleton />;
+    return <PageSkeleton />;
   }
 
   return (
