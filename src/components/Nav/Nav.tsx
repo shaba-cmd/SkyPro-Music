@@ -7,9 +7,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch } from '@/store/store';
 import { clearAuth } from '@/store/features/authSlice';
+import { useThemeTransition } from '@/hooks/useThemeTransition';
 
 export default function Nav() {
   const dispatch = useAppDispatch();
+  const { theme, toggleWithAnimation } = useThemeTransition();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -20,7 +22,7 @@ export default function Nav() {
             width={250}
             height={170}
             className={styles.logo__image}
-            src="/img/logo.png"
+            src={`/img/logo${theme === 'light' ? '-light' : ''}.png`}
             alt={'logo'}
             priority
           />
@@ -65,9 +67,19 @@ export default function Nav() {
               </Link>
             </li>
             <li className={styles.menu__item}>
-              <svg className={styles.menu__theme}>
-                <use href="#icon-light" />
-              </svg>
+              <div
+                onClick={toggleWithAnimation}
+                role="button"
+                tabIndex={0}
+                aria-label="Переключить тему"
+              >
+                <svg>
+                  <use
+                    className={styles.menu__theme}
+                    href={theme === 'dark' ? '#icon-light' : '#icon-dark'}
+                  />
+                </svg>
+              </div>
             </li>
           </motion.ul>
         )}

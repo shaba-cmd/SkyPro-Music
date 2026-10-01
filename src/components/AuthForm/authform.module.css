@@ -21,7 +21,7 @@
 
 .modal__form {
   width: 366px;
-  background-color: var(--color-text);
+  background-color: var(--color-surface-sec);
   border-radius: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -71,6 +71,7 @@
   border-bottom: 1px solid #d0cece;
   padding: 8px 1px;
   outline: none;
+  background-color: transparent;
 }
 
 .modal__input::-webkit-input-placeholder {
@@ -135,7 +136,7 @@
 
 .errorContainer {
   font-size: 12px;
-  color: red;
+  color: var(--color-error);
   position: absolute;
   bottom: -25px;
 }

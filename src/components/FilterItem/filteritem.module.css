@@ -55,7 +55,7 @@
 }
 
 .filter__list_item {
-  color: white;
+  color: var(--color-text);
   display: flex;
   gap: 28px;
   font-size: 20px;
@@ -93,7 +93,7 @@
 }
 
 .filter__list_scroll::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: var(--color-text);
   border-radius: 10px;
 }
 

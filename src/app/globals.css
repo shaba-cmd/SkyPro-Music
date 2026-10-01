@@ -1,23 +1,45 @@
 :root {
   --color-bg: #181818;
-  --color-bg-secondary: #1c1c1c;
   --color-surface: #313131;
+  --color-surface-sec: #ffffff;
   --color-text: #ffffff;
   --color-text-muted: #4e4e4e;
   --color-border: #4e4e4e;
   --color-accent: #b672ff;
+  --color-volume-border: #ffffff;
+  --color-volume-accent: #ffffff;
+  --color-bar-border: #d9d9d9;
+  --color-bar-border-sec: #696969;
   --color-error: #ff5f5f;
 }
 
 :root[data-theme='light'] {
   --color-bg: #ffffff;
-  --color-bg-secondary: #f6f5f3;
   --color-surface: #f6f5f3;
+  --color-surface-sec: #f6f5f3;
   --color-text: #000000;
   --color-text-muted: #b1b1b1;
   --color-border: #d9d9d9;
   --color-accent: #b672ff;
+  --color-volume-border: #b1b1b1;
+  --color-volume-accent: #b672ff;
+  --color-bar-border: #b1b1b1;
+  --color-bar-border-sec: #b1b1b1;
   --color-error: #d32f2f;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
 }
 
 * {
@@ -26,13 +48,11 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-montserrat), 'Arial';
-  transition:
-    background-color 0.2s,
-    color 0.2s;
 }
 
 h1,

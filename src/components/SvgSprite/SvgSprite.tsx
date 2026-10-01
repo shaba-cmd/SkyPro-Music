@@ -28,14 +28,14 @@ export default function SvgSprite() {
         viewBox="0 0 12 12"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="6" cy="6" r="5.5" stroke="var(--color-border)" />
-        <path d="M4 6H6.5V2.5" stroke="var(--color-border)" />
+        <circle cx="6" cy="6" r="5.5" stroke="#696969" />
+        <path d="M4 6H6.5V2.5" stroke="#696969" />
       </symbol>
       <symbol
         id="icon-like"
         viewBox="0 0 16 14"
         xmlns="http://www.w3.org/2000/svg"
-        stroke="var(--color-border)"
+        stroke="var(--color-text-muted)"
       >
         <path d="M8.34372 2.25572H8.36529C9.29718 1.44175 11.7563 0.165765 13.9565 1.76734C17.3111 4.20921 14.2458 9.5 8.36529 13H8.34372M8.34378 2.25572H8.32221C7.39032 1.44175 4.93121 0.165765 2.73102 1.76734C-0.623552 4.20921 2.44172 9.5 8.32221 13H8.34378" />
       </symbol>
@@ -44,20 +44,20 @@ export default function SvgSprite() {
         viewBox="0 0 20 19"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M8 16V1.9697L19 1V13" stroke="var(--color-border)" />
+        <path d="M8 16V1.9697L19 1V13" stroke="var(--color-text-muted)" />
         <ellipse
           cx="4.5"
           cy="16"
           rx="3.5"
           ry="2"
-          stroke="var(--color-border)"
+          stroke="var(--color-text-muted)"
         />
         <ellipse
           cx="15.5"
           cy="13"
           rx="3.5"
           ry="2"
-          stroke="var(--color-border)"
+          stroke="var(--color-text-muted)"
         />
       </symbol>
       <symbol
@@ -66,7 +66,7 @@ export default function SvgSprite() {
         viewBox="0 0 14 18"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <mask id="path-1-inside-1_2985_507" fill="var(--color-text)">
+        <mask id="path-1-inside-1_2985_507" fill="#d9d9d9">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -75,12 +75,12 @@ export default function SvgSprite() {
         </mask>
         <path
           d="M3 5V6H3.41421L3.70711 5.70711L3 5ZM8 0H9V-2.41421L7.29289 -0.707107L8 0ZM0 5V4H-1V5H0ZM0 13H-1V14H0V13ZM3 13L3.70711 12.2929L3.41421 12H3V13ZM8 18L7.29289 18.7071L9 20.4142V18H8ZM3.70711 5.70711L8.70711 0.707107L7.29289 -0.707107L2.29289 4.29289L3.70711 5.70711ZM0 6H3V4H0V6ZM1 13V5H-1V13H1ZM3 12H0V14H3V12ZM8.70711 17.2929L3.70711 12.2929L2.29289 13.7071L7.29289 18.7071L8.70711 17.2929ZM7 0V18H9V0H7Z"
-          fill="var(--color-text)"
+          fill="#d9d9d9"
           mask="url(#path-1-inside-1_2985_507)"
         />
         <path
           d="M11 13C12.1046 13 13 11.2091 13 9C13 6.79086 12.1046 5 11 5"
-          stroke="var(--color-text)"
+          stroke="#d9d9d9"
         />
       </symbol>
       <symbol
@@ -88,6 +88,7 @@ export default function SvgSprite() {
         viewBox="0 0 16 14"
         xmlns="http://www.w3.org/2000/svg"
         fill="var(--color-accent)"
+        stroke="none"
       >
         <path d="M8.34372 2.25572H8.36529C9.29718 1.44175 11.7563 0.165765 13.9565 1.76734C17.3111 4.20921 14.2458 9.5 8.36529 13H8.34372M8.34378 2.25572H8.32221C7.39032 1.44175 4.93121 0.165765 2.73102 1.76734C-0.623552 4.20921 2.44172 9.5 8.32221 13H8.34378" />
       </symbol>
@@ -96,10 +97,10 @@ export default function SvgSprite() {
         viewBox="0 0 16 14"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M1 2V12.5" stroke="var(--color-text)" />
+        <path d="M1 2V12.5" stroke="var(--color-bar-border)" />
         <path
           d="M3 7L12.75 0.937823L12.75 13.0622L3 7Z"
-          fill="var(--color-text)"
+          fill="var(--color-bar-border)"
         />
       </symbol>
       <symbol
@@ -109,7 +110,7 @@ export default function SvgSprite() {
       >
         <path
           d="M15 10L-1.01012e-06 0.47372L-1.84293e-06 19.5263L15 10Z"
-          fill="var(--color-text)"
+          fill="var(--color-bar-border)"
         />
       </symbol>
       <symbol
@@ -117,8 +118,8 @@ export default function SvgSprite() {
         viewBox="0 0 15 20"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="5" height="19" fill="var(--color-text)" />
-        <rect x="10" width="5" height="19" fill="var(--color-text)" />
+        <rect width="5" height="19" fill="var(--color-bar-border)" />
+        <rect x="10" width="5" height="19" fill="var(--color-bar-border)" />
       </symbol>
       <symbol
         id="icon-pause"
@@ -126,18 +127,18 @@ export default function SvgSprite() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M0 0h5v19H0z" fill="var(--color-text)" />
-        <path d="M10 0h5v19h-5z" fill="var(--color-text)" />
+        <path d="M0 0h5v19H0z" fill="var(--color-bar-border)" />
+        <path d="M10 0h5v19h-5z" fill="var(--color-bar-border)" />
       </symbol>
       <symbol
         id="icon-next"
         viewBox="0 0 16 14"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M15 2V12.5" stroke="var(--color-text)" />
+        <path d="M15 2V12.5" stroke="var(--color-bar-border)" />
         <path
           d="M13 7L3.25 0.937823L3.25 13.0622L13 7Z"
-          fill="var(--color-text)"
+          fill="var(--color-bar-border)"
         />
       </symbol>
       <symbol
@@ -147,11 +148,11 @@ export default function SvgSprite() {
       >
         <path
           d="M10 3L5 0.113249V5.88675L10 3ZM7 14.5C3.96243 14.5 1.5 12.0376 1.5 9H0.5C0.5 12.5899 3.41015 15.5 7 15.5V14.5ZM1.5 9C1.5 5.96243 3.96243 3.5 7 3.5V2.5C3.41015 2.5 0.5 5.41015 0.5 9H1.5Z"
-          fill="var(--color-text-muted)"
+          fill="var(--color-bar-border-sec)"
         />
         <path
           d="M10 15L15 17.8868V12.1132L10 15ZM13 3.5C16.0376 3.5 18.5 5.96243 18.5 9H19.5C19.5 5.41015 16.5899 2.5 13 2.5V3.5ZM18.5 9C18.5 12.0376 16.0376 14.5 13 14.5V15.5C16.5899 15.5 19.5 12.5899 19.5 9H18.5Z"
-          fill="var(--color-text-muted)"
+          fill="var(--color-bar-border-sec)"
         />
       </symbol>
       <symbol
@@ -161,11 +162,11 @@ export default function SvgSprite() {
       >
         <path
           d="M19.5 15L14.5 12.1132V17.8868L19.5 15ZM10.1632 12.0833L9.70863 12.2916L10.1632 12.0833ZM7.33683 5.91673L6.8823 6.12505L7.33683 5.91673ZM0.5 3.5H2.79151V2.5H0.5V3.5ZM6.8823 6.12505L9.70863 12.2916L10.6177 11.8749L7.79137 5.7084L6.8823 6.12505ZM14.7085 15.5H15V14.5H14.7085V15.5ZM9.70863 12.2916C10.6047 14.2466 12.5579 15.5 14.7085 15.5V14.5C12.949 14.5 11.3508 13.4745 10.6177 11.8749L9.70863 12.2916ZM2.79151 3.5C4.55105 3.5 6.14918 4.52552 6.8823 6.12505L7.79137 5.7084C6.89533 3.75341 4.94205 2.5 2.79151 2.5V3.5Z"
-          fill="var(--color-text-muted)"
+          fill="var(--color-bar-border-sec)"
         />
         <path
           d="M19.5 3L14.5 5.88675V0.113249L19.5 3ZM10.1632 5.91673L9.70863 5.7084L10.1632 5.91673ZM7.33683 12.0833L6.8823 11.8749L7.33683 12.0833ZM0.5 14.5H2.79151V15.5H0.5V14.5ZM6.8823 11.8749L9.70863 5.7084L10.6177 6.12505L7.79137 12.2916L6.8823 11.8749ZM14.7085 2.5H15V3.5H14.7085V2.5ZM9.70863 5.7084C10.6047 3.75341 12.5579 2.5 14.7085 2.5V3.5C12.949 3.5 11.3508 4.52552 10.6177 6.12505L9.70863 5.7084ZM2.79151 14.5C4.55105 14.5 6.14918 13.4745 6.8823 11.8749L7.79137 12.2916C6.89533 14.2466 4.94205 15.5 2.79151 15.5V14.5Z"
-          fill="var(--color-text-muted)"
+          fill="var(--color-bar-border-sec)"
         />
       </symbol>
       <symbol
@@ -186,7 +187,7 @@ export default function SvgSprite() {
       </symbol>
       <symbol
         id="icon-light"
-        fill="none"
+        fill="transparent"
         viewBox="0 0 39 39"
         width="39"
         height="39"
@@ -194,13 +195,13 @@ export default function SvgSprite() {
       >
         <path
           d="M19.2262 27.4088C14.6919 27.4088 11.0032 23.7201 11.0032 19.1857C11.0032 14.9315 14.1933 11.4138 18.4233 11.0031C18.6942 10.9762 18.95 11.1251 19.0617 11.3722C19.1739 11.6194 19.1167 11.9102 18.9192 12.0958C17.888 13.0666 17.3204 14.3762 17.3204 15.7841C17.3204 18.5803 19.5953 20.8553 22.3916 20.8553C23.9165 20.8553 25.3459 20.1775 26.3145 18.9969C26.4867 18.787 26.7737 18.7109 27.0263 18.8048C27.2804 18.8998 27.4455 19.1458 27.438 19.4167C27.3139 23.8981 23.7066 27.4088 19.2262 27.4088ZM16.8924 12.6295C14.1691 13.5873 12.2707 16.1677 12.2707 19.1857C12.2707 23.0213 15.3907 26.1413 19.2262 26.1413C22.4385 26.1413 25.1198 24.0071 25.926 21.0479C24.8932 21.7435 23.6688 22.1239 22.3916 22.1239C18.896 22.1239 16.0523 19.2807 16.0523 15.7846C16.0523 14.6557 16.3437 13.5776 16.8924 12.6295Z"
-          fill="white"
+          fill="var(--color-text)"
         />
-        <circle cx="19.5" cy="19.5" r="19" stroke="white" />
+        <circle cx="19.5" cy="19.5" r="19" stroke="var(--color-text)" />
       </symbol>
       <symbol
         id="icon-dark"
-        fill="none"
+        fill="transparent"
         viewBox="0 0 39 39"
         width="39"
         height="39"

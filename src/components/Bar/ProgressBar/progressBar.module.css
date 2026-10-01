@@ -7,7 +7,7 @@
 .progress__input {
   --progress-height: 5px;
   --progress-color: var(--color-accent);
-  --progress-bg-color: #2e2e2e;
+  --progress-bg-color: var(--color-border);
 
   width: 100%;
   height: var(--progress-height);

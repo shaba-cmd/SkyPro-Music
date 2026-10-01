@@ -3,8 +3,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(28, 28, 28, 0.5);
-  backdrop-filter: blur(5px);
+  background: var(--color-bg);
 }
 
 .bar__content {
@@ -77,6 +76,7 @@
 .player__btnNextSvg {
   width: 15px;
   height: 14px;
+  fill: var(--color-text-muted);
 }
 
 .player__btnPlaySvg {
@@ -143,7 +143,7 @@
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: var(--color-text)-muted;
+  stroke: var(--color-text-muted);
 }
 
 .trackPlay__author {

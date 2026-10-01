@@ -24,7 +24,7 @@ export default function VolumeControl() {
             value={volume}
             onChange={(e) => dispatch(setVolume(Number(e.target.value)))}
             style={{
-              background: `linear-gradient(to right, var(--color-text) 0%, var(--color-text) ${volume * 100}%,
+              background: `linear-gradient(to right, var(--color-volume-accent) 0%, var(--color-volume-accent) ${volume * 100}%,
                     #797979 ${volume * 100}%, #797979 100%)`,
             }}
           />
