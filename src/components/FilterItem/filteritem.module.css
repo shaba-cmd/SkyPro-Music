@@ -7,10 +7,10 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--color-text);
   border-radius: 60px;
   padding: 6px 20px;
-  color: #ffffff;
+  color: var(--color-text);
   cursor: pointer;
   transition: all 0.1s ease-in-out;
   position: relative;
@@ -47,7 +47,7 @@
 }
 
 .filter__list {
-  background-color: #313131;
+  background-color: var(--color-surface);
   padding: 34px;
   border-radius: 12px;
   position: absolute;

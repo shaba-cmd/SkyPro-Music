@@ -1,6 +1,6 @@
 .main__nav {
   width: 244px;
-  background-color: #181818;
+  background-color: var(--color-bg);
   padding: 20px 0 20px 36px;
 }
 
@@ -15,7 +15,7 @@
 .logo__image {
   width: 113.33px;
   height: 17px;
-  color: #181818;
+  color: var(--color-bg);
 }
 
 .nav__burger {
@@ -39,7 +39,7 @@
   display: inline-block;
   width: 100%;
   height: 1px;
-  background-color: #d3d3d3;
+  background-color: var(--color-text);
 }
 
 .menu__list {
@@ -53,8 +53,12 @@
 }
 
 .menu__link {
-  color: #ffffff;
+  color: var(--color-text);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+.menu__theme {
+  cursor: pointer;
 }

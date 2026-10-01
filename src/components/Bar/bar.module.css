@@ -123,7 +123,7 @@
 .trackPlay__image {
   width: 51px;
   height: 51px;
-  background-color: #313131;
+  background-color: var(--color-surface);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -143,7 +143,7 @@
   width: 18px;
   height: 17px;
   fill: transparent;
-  stroke: #4e4e4e;
+  stroke: var(--color-text)-muted;
 }
 
 .trackPlay__author {
@@ -158,7 +158,7 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--color-text);
   white-space: nowrap;
 }
 
@@ -174,7 +174,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .trackPlay__box {
@@ -203,20 +203,20 @@
 
 .btnIcon:active svg {
   fill: transparent;
-  stroke: #ffffff;
+  stroke: var(--color-text);
   cursor: pointer;
 }
 
 .btnIcon:active .trackPlay__likeSvg,
 .btnIcon:active .trackPlay__dislikeSvg {
   fill: #696969;
-  stroke: #ffffff;
+  stroke: var(--color-text);
   cursor: pointer;
 }
 
 .btn_active {
   fill: #696969;
-  stroke: #ffffff;
+  stroke: var(--color-text);
 }
 
 .trackPlay__likeButton {
@@ -237,8 +237,8 @@
   padding: 6px 10px;
   white-space: nowrap;
   border-radius: 4px;
-  background-color: #313131;
-  color: #ff5f5f;
+  background-color: var(--color-surface);
+  color: var(--color-error);
   font-size: 12px;
   line-height: 1;
 }

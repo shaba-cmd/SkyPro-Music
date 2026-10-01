@@ -64,6 +64,11 @@ export default function Nav() {
                 Выйти
               </Link>
             </li>
+            <li className={styles.menu__item}>
+              <svg className={styles.menu__theme}>
+                <use href="#icon-light" />
+              </svg>
+            </li>
           </motion.ul>
         )}
       </AnimatePresence>
