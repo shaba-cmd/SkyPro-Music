@@ -7,9 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store/store';
 import { clearAuth } from '@/store/features/authSlice';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-import Skeleton from '@/components/Skeleton/Skeleton';
-import skeletonStyles from '@/components/Skeleton/skeleton.module.css';
+import { PlaylistImageSkeleton } from '../Skeleton/Skeleton';
 
 const PLAYLISTS = [
   { id: 2, img: '/img/playlist01.png', alt: 'Плейлист дня' },
@@ -22,7 +20,7 @@ function PlaylistImage({ src, alt }: { src: string; alt: string }) {
 
   return (
     <div className={styles.sidebar__imageWrapper}>
-      {!isLoaded && <Skeleton className={skeletonStyles.sidebarItem} />}
+      {!isLoaded && <PlaylistImageSkeleton />}
       <Image
         className={styles.sidebar__img}
         src={src}

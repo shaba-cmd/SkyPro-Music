@@ -28,6 +28,16 @@
   --color-error: #d32f2f;
 }
 
+:root {
+  --skeleton-base: #313131;
+  --skeleton-highlight: #3d3d3d;
+}
+
+:root[data-theme='light'] {
+  --skeleton-base: #e8e8e8;
+  --skeleton-highlight: #f5f5f5;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -75,4 +85,8 @@ button {
 
 a {
   text-decoration: none;
+}
+
+.react-loading-skeleton {
+  --pseudo-element-display: block !important;
 }
