@@ -17,13 +17,15 @@ export default function Message({ text, onRetry }: MessageProps) {
           height={120}
           priority
         />
-        <p className={styles.message__error}>Ошибка загрузки</p>
+        <p className={styles.message__error}>{onRetry && 'Ошибка загрузки'}</p>
         <p className={styles.message__desc} role="status">
           {text}
         </p>
-        <button onClick={onRetry} className={styles.message__btn}>
-          Повторить
-        </button>
+        {onRetry && (
+          <button className={styles.message__btn} onClick={onRetry}>
+            Повторить
+          </button>
+        )}
       </article>
     </div>
   );

@@ -110,51 +110,50 @@ export default function AuthForm({ isSignUp }: { isSignUp: boolean }) {
         <div className={styles.modal__block}>
           <form className={styles.modal__form} onSubmit={onSend}>
             <Link href="/music/main">
-              <div className={styles.modal__logo}>
-                <Image
-                  src="/img/logo_modal.png"
-                  alt="logo"
-                  width={140}
-                  height={21}
-                  priority
-                />
-              </div>
+              <Image
+                src="/img/logo_modal.png"
+                alt="logo"
+                width={140}
+                height={21}
+                priority
+              />
             </Link>
 
-            <input
-              className={cn(styles.modal__input, styles.email)}
-              type="text"
-              name="email"
-              placeholder="Почта"
-              autoComplete="email"
-              disabled={isLoading}
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <input
-              className={cn(styles.modal__input, isSignUp && styles.email)}
-              type="password"
-              name="password"
-              placeholder="Пароль"
-              autoComplete={isSignUp ? 'new-password' : 'current-password'}
-              disabled={isLoading}
-              value={formData.password}
-              onChange={handleChange}
-            />
-            {isSignUp && (
+            <div className={styles.modal__boxInput}>
               <input
-                className={styles.modal__input}
-                type="password"
-                name="repeatPassword"
-                placeholder="Повторите пароль"
-                autoComplete="new-password"
+                className={cn(styles.modal__input, styles.email)}
+                type="text"
+                name="email"
+                placeholder="Почта"
+                autoComplete="email"
                 disabled={isLoading}
-                value={formData.repeatPassword}
+                value={formData.email}
                 onChange={handleChange}
               />
-            )}
-
-            <div className={styles.errorContainer}>{error}</div>
+              <input
+                className={cn(styles.modal__input, isSignUp && styles.email)}
+                type="password"
+                name="password"
+                placeholder="Пароль"
+                autoComplete={isSignUp ? 'new-password' : 'current-password'}
+                disabled={isLoading}
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {isSignUp && (
+                <input
+                  className={styles.modal__input}
+                  type="password"
+                  name="repeatPassword"
+                  placeholder="Повторите пароль"
+                  autoComplete="new-password"
+                  disabled={isLoading}
+                  value={formData.repeatPassword}
+                  onChange={handleChange}
+                />
+              )}
+              <div className={styles.errorContainer}>{error}</div>
+            </div>
 
             <Button type="submit" disabled={isLoading}>
               {isLoading
