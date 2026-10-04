@@ -1,7 +1,8 @@
 .centerblock__search {
-  width: 100%;
-  border-bottom: 1px solid #4e4e4e;
-  margin-bottom: 51px;
+  min-width: 1295px;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,13 +13,16 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 
 .search__svg {
   width: 17px;
   height: 17px;
   margin-right: 5px;
-  stroke: #ffffff;
+  stroke: var(--color-text);
   fill: transparent;
 }
 
@@ -33,13 +37,13 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--color-text);
   outline: none;
 }
 
 .search__text::-webkit-input-placeholder {
   background-color: transparent;
-  color: #ffffff;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -48,7 +52,7 @@
 
 .search__text:-ms-input-placeholder {
   background-color: transparent;
-  color: #ffffff;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -57,7 +61,7 @@
 
 .search__text::-ms-input-placeholder {
   background-color: transparent;
-  color: #ffffff;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -66,9 +70,52 @@
 
 .search__text::placeholder {
   background-color: transparent;
-  color: #ffffff;
+  color: var(--color-text);
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+
+@media (max-width: 1880px) {
+  .centerblock__search {
+    min-width: 1195px;
+  }
+}
+
+@media (max-width: 1770px) {
+  .centerblock__search {
+    min-width: 1095px;
+  }
+}
+
+@media (max-width: 1670px) {
+  .centerblock__search {
+    min-width: 995px;
+  }
+}
+
+@media (max-width: 1570px) {
+  .centerblock__search {
+    min-width: 850px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .centerblock__search {
+    min-width: 1050px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .centerblock__search {
+    min-width: 1010px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .centerblock__search {
+    min-width: 900px;
+  }
 }

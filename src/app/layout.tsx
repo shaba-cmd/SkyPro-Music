@@ -19,7 +19,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${montserrat.variable}`}>
+    <html
+      lang="ru"
+      className={`${montserrat.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                      try {
+                        var t = localStorage.getItem('theme') || 'dark';
+                        document.documentElement.dataset.theme = t;
+                      } catch (e) {}
+                    `,
+          }}
+        />
+      </head>
       <body>
         <ReduxProvider>{children}</ReduxProvider>
       </body>

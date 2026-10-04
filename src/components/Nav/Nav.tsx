@@ -7,9 +7,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch } from '@/store/store';
 import { clearAuth } from '@/store/features/authSlice';
+import { useThemeTransition } from '@/hooks/useThemeTransition';
+import { PLAYLISTS } from '../SideBar/SideBar';
+import cn from 'classnames';
 
 export default function Nav() {
   const dispatch = useAppDispatch();
+  const { theme, toggleWithAnimation } = useThemeTransition();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -20,7 +24,7 @@ export default function Nav() {
             width={250}
             height={170}
             className={styles.logo__image}
-            src="/img/logo.png"
+            src={`/img/logo${theme === 'light' ? '-light' : ''}.png`}
             alt={'logo'}
             priority
           />
@@ -53,6 +57,16 @@ export default function Nav() {
                 Мой плейлист
               </Link>
             </li>
+            {PLAYLISTS.map(({ id, alt }) => (
+              <li key={id} className={cn(styles.menu__item, styles.menu__pl)}>
+                <Link
+                  className={styles.menu__link}
+                  href={`/music/category/${id}`}
+                >
+                  {alt}
+                </Link>
+              </li>
+            ))}
             <li className={styles.menu__item}>
               <Link
                 href="/auth/sign-in"
@@ -63,6 +77,21 @@ export default function Nav() {
               >
                 Выйти
               </Link>
+            </li>
+            <li className={styles.menu__item}>
+              <div
+                onClick={toggleWithAnimation}
+                role="button"
+                tabIndex={0}
+                aria-label="Переключить тему"
+              >
+                <svg>
+                  <use
+                    className={styles.menu__theme}
+                    href={theme === 'dark' ? '#icon-light' : '#icon-dark'}
+                  />
+                </svg>
+              </div>
             </li>
           </motion.ul>
         )}

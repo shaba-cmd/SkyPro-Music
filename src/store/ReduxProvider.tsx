@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { makeStore, AppStore } from './store';
 import { hydrateAuth } from './features/authSlice';
 import { loadAuthState, saveAuthState } from '@/services/auth/authStorage';
+import ThemeSync from '@/components/ThemeSync/ThemeSync';
 
 export default function ReduxProvider({
   children,
@@ -34,5 +35,10 @@ export default function ReduxProvider({
     });
   }, []);
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return (
+    <Provider store={storeRef.current}>
+      <ThemeSync />
+      {children}
+    </Provider>
+  );
 }
