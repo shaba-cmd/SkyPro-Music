@@ -11,8 +11,8 @@ export const useThemeTransition = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
 
     const rect = event.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    const x = rect.left + rect.width / 10;
+    const y = rect.top + rect.height / 8;
 
     const radius = Math.hypot(
       Math.max(x, window.innerWidth - x),
