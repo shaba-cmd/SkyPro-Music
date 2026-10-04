@@ -1,6 +1,10 @@
 .main__sidebar {
   max-width: 418px;
   padding: 20px 90px 20px 78px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 .sidebar__personal {
   display: -webkit-box;
@@ -92,4 +96,10 @@
   position: absolute;
   inset: 0;
   transition: opacity 0.3s;
+}
+
+@media (max-width: 1440px) {
+  .main__sidebar {
+    display: none;
+  }
 }

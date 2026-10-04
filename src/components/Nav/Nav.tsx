@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch } from '@/store/store';
 import { clearAuth } from '@/store/features/authSlice';
 import { useThemeTransition } from '@/hooks/useThemeTransition';
+import { PLAYLISTS } from '../SideBar/SideBar';
+import cn from 'classnames';
 
 export default function Nav() {
   const dispatch = useAppDispatch();
@@ -55,6 +57,16 @@ export default function Nav() {
                 Мой плейлист
               </Link>
             </li>
+            {PLAYLISTS.map(({ id, alt }) => (
+              <li key={id} className={cn(styles.menu__item, styles.menu__pl)}>
+                <Link
+                  className={styles.menu__link}
+                  href={`/music/category/${id}`}
+                >
+                  {alt}
+                </Link>
+              </li>
+            ))}
             <li className={styles.menu__item}>
               <Link
                 href="/auth/sign-in"

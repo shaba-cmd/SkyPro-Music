@@ -3,6 +3,8 @@
   min-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .wrapper::-webkit-scrollbar {
@@ -45,7 +47,7 @@
   -webkit-box-flex: 3;
   -ms-flex-positive: 3;
   flex-grow: 3;
-  padding: 20px 40px 20px 111px;
+  padding: 131px 419px 20px 294px;
 }
 
 .main__h2 {
@@ -128,4 +130,22 @@
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+}
+
+@media (max-width: 1770px) {
+  .centerblock {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1440px) {
+  .centerblock {
+    padding: 131px 250px 20px 250px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .centerblock {
+    padding: 131px 160px 20px 160px;
+  }
 }

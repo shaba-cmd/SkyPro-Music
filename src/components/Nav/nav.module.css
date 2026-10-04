@@ -2,6 +2,9 @@
   width: 244px;
   background-color: var(--color-bg);
   padding: 20px 0 20px 36px;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .nav__logo {
@@ -61,4 +64,14 @@
 
 .menu__theme {
   cursor: pointer;
+}
+
+.menu__pl {
+  display: none;
+}
+
+@media (max-width: 1440px) {
+  .menu__pl {
+    display: block;
+  }
 }

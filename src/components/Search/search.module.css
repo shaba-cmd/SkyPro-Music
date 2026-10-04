@@ -1,7 +1,8 @@
 .centerblock__search {
-  width: 100%;
+  min-width: 1295px;
+  background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 51px;
+  padding-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,6 +13,9 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 
 .search__svg {
@@ -71,4 +75,47 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+
+@media (max-width: 1880px) {
+  .centerblock__search {
+    min-width: 1195px;
+  }
+}
+
+@media (max-width: 1770px) {
+  .centerblock__search {
+    min-width: 1095px;
+  }
+}
+
+@media (max-width: 1670px) {
+  .centerblock__search {
+    min-width: 995px;
+  }
+}
+
+@media (max-width: 1570px) {
+  .centerblock__search {
+    min-width: 850px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .centerblock__search {
+    min-width: 1050px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .centerblock__search {
+    min-width: 1010px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .centerblock__search {
+    min-width: 900px;
+  }
 }

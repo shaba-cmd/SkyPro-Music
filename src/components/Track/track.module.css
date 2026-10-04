@@ -221,3 +221,15 @@
   align-items: center;
   transition: opacity 0.2s;
 }
+
+@media (max-width: 1670px) {
+ .track__timeSvgBox {
+    width: 70px;
+  }
+}
+
+@media (max-width: 1500px) {
+ .track__timeSvgBox {
+    width: 80px;
+  }
+}
