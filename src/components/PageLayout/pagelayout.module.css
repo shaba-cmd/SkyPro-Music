@@ -143,9 +143,3 @@
     padding: 131px 250px 20px 250px;
   }
 }
-
-@media (max-width: 1250px) {
-  .centerblock {
-    padding: 131px 160px 20px 160px;
-  }
-}

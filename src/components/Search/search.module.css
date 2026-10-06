@@ -101,21 +101,3 @@
     min-width: 850px;
   }
 }
-
-@media (max-width: 1440px) {
-  .centerblock__search {
-    min-width: 1050px;
-  }
-}
-
-@media (max-width: 1400px) {
-  .centerblock__search {
-    min-width: 1010px;
-  }
-}
-
-@media (max-width: 1250px) {
-  .centerblock__search {
-    min-width: 900px;
-  }
-}
