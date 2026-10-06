@@ -48,17 +48,25 @@ export default function SideBar({ page }: { page: boolean }) {
   return (
     <div className={styles.main__sidebar}>
       <div className={styles.sidebar__personal}>
-        <p className={styles.sidebar__personalName}>{user}</p>
-        <div
-          onClick={handleLogout}
-          role="button"
-          tabIndex={0}
-          className={styles.sidebar__icon}
-        >
-          <svg>
-            <use href="#logout"></use>
-          </svg>
-        </div>
+        {user ? (
+          <>
+            <p className={styles.sidebar__personalName}>{user}</p>
+            <div
+              onClick={handleLogout}
+              role="button"
+              tabIndex={0}
+              className={styles.sidebar__icon}
+            >
+              <svg>
+                <use href="#logout"></use>
+              </svg>
+            </div>
+          </>
+        ) : (
+          <Link href="/auth/sign-in" className={styles.sidebar__personalName}>
+            Войти
+          </Link>
+        )}
       </div>
       {!page && (
         <div className={styles.sidebar__block}>
