@@ -8,7 +8,7 @@ Next.js 16 (App Router), TypeScript, Redux Toolkit, axios, Framer Motion, CSS Mo
 
 ## Деплой
 
-...
+[sky-pro-music.vercel.app](https://sky-pro-music.vercel.app/)
 
 ## Запуск
 
