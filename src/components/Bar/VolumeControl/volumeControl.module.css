@@ -55,7 +55,7 @@
   appearance: none;
   width: 16px;
   height: 16px;
-  background: #1a1a1a;
-  border: 2px solid white;
+  background: var(--color-bg);
+  border: 2px solid var(--color-volume-border);
   border-radius: 50%;
 }

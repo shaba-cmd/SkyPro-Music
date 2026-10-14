@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import cn from 'classnames';
 import styles from '@/components/PageLayout/pagelayout.module.css';
 import Filter from '@/components/Filter/Filter';
@@ -18,7 +18,9 @@ export default function MyPlaylist() {
   const currentTrack = useAppSelector((state) => state.tracks.currentTrack);
   const access = useAppSelector((state) => state.auth.access);
   const refresh = useAppSelector((state) => state.auth.refresh);
+  const isHydrated = useAppSelector((state) => state.auth.isHydrated);
 
+  const favoriteTracks = useAppSelector((state) => state.tracks.favoriteTracks);
   const visibleTracks = useFilteredTracks();
 
   const loader = useCallback(async () => {
@@ -32,10 +34,21 @@ export default function MyPlaylist() {
     );
   }, [access, refresh, dispatch]);
 
+  const playlistTracks = useMemo(() => {
+    const favoriteIds = new Set(favoriteTracks.map((track) => track._id));
+    return visibleTracks.filter((track) => favoriteIds.has(track._id));
+  }, [visibleTracks, favoriteTracks]);
+
   const { isFetching, error, refetch } = useTracksLoader(loader);
 
   if (error) {
     return <Message text={error} onRetry={refetch} />;
+  }
+
+  if (isHydrated && !access) {
+    return (
+      <Message text="Войдите в аккаунт, чтобы сохранять треки" auth={true} />
+    );
   }
 
   return (
@@ -64,14 +77,14 @@ export default function MyPlaylist() {
         <div className={styles.content__playlist}>
           {isFetching ? (
             <PageSkeleton />
-          ) : visibleTracks.length === 0 ? (
+          ) : playlistTracks.length === 0 ? (
             <Message text="В вашем плейлисте пока нет треков" />
           ) : (
-            visibleTracks.map((el) => (
+            playlistTracks.map((el) => (
               <Track
                 key={el._id}
                 track={el}
-                playlist={visibleTracks}
+                playlist={playlistTracks}
                 selectedTrack={currentTrack?._id === el._id}
               />
             ))
